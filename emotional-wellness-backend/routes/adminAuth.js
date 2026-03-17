@@ -9,7 +9,7 @@ const {
   logout, 
   forgotPassword, 
   resetPassword 
-} = require('../controllers/authcontroller');  // make sure all functions are exported
+} = require('../controllers/adminAuthcontroller');  // make sure all functions are exported
 
 // ----- Local authentication routes -----
 router.post('/register', register);
