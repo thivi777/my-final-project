@@ -1,0 +1,20 @@
+{
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/admin/admins/page": "app/admin/admins/page.js",
+  "/admin/login/page": "app/admin/login/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/admin/users/page": "app/admin/users/page.js",
+  "/app/activities/page": "app/app/activities/page.js",
+  "/app/insights/page": "app/app/insights/page.js",
+  "/app/mood/page": "app/app/mood/page.js",
+  "/app/page": "app/app/page.js",
+  "/app/profile/page": "app/app/profile/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/forgot-password/page": "app/forgot-password/page.js",
+  "/login/page": "app/login/page.js",
+  "/onboarding/page": "app/onboarding/page.js",
+  "/page": "app/page.js",
+  "/register/page": "app/register/page.js",
+  "/reset-password/[token]/page": "app/reset-password/[token]/page.js"
+}

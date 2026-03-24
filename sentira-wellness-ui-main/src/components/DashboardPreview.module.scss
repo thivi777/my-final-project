@@ -1,0 +1,284 @@
+@use '@/styles/abstracts' as *;
+
+// ── Section ───────────────────────────────────────────────
+.section {
+  padding: $section-pad 0;
+  background: $off-white;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 10%; right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba($teal-primary, 0.25), transparent);
+  }
+}
+
+.blob1 {
+  position: absolute;
+  top: -8rem; left: -6rem;
+  width: 36vw; height: 36vw;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba($teal-primary, 0.1) 0%, transparent 70%);
+}
+
+.blob2 {
+  position: absolute;
+  bottom: -4rem; right: -6rem;
+  width: 28vw; height: 28vw;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba($gold, 0.08) 0%, transparent 70%);
+}
+
+.container {
+  max-width: $container;
+  margin: 0 auto;
+  padding: 0 $container-pad;
+  position: relative;
+  z-index: 1;
+}
+
+// ── Header ────────────────────────────────────────────────
+.header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.labelRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.labelLine {
+  width: 24px;
+  height: 1px;
+  background: $gold;
+}
+
+.labelText {
+  font-family: $font-body;
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: $teal-primary;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  font-weight: 400;
+  color: $teal-dark;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin: 0 0 1rem;
+
+  em {
+    font-style: italic;
+    color: $teal-deep;
+  }
+}
+
+.subtitle {
+  font-family: $font-body;
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: $teal-mid;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+// ── Bordered card grid ────────────────────────────────────
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: rgba($teal-primary, 0.1);
+  border: 1px solid rgba($teal-primary, 0.15);
+}
+
+.card {
+  background: $off-white;
+  padding: 2.25rem;
+  border-right: 1px solid rgba($teal-primary, 0.12);
+  border-bottom: 1px solid rgba($teal-primary, 0.12);
+
+  &:nth-child(even)      { border-right: none; }
+  &:nth-last-child(-n+2) { border-bottom: none; }
+}
+
+.cardLabel {
+  font-family: $font-body;
+  font-size: 0.58rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: $teal-primary;
+  margin-bottom: 0.4rem;
+}
+
+.cardTitle {
+  font-family: $font-display;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: $teal-dark;
+  margin-bottom: 1.6rem;
+  line-height: 1.2;
+}
+
+// ── Mood check-in ─────────────────────────────────────────
+.moods {
+  display: flex;
+  gap: 1.5px;
+  background: rgba($teal-primary, 0.1);
+}
+
+.moodBtn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 1.1rem 0.75rem;
+  background: $off-white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+  text-align: center;
+
+  &:hover { background: $teal-soft; }
+
+  &.active {
+    background: $teal-deep;
+
+    .moodIcon { color: #b8e0d8; }
+    .moodLabel { color: rgba(224, 244, 241, 0.65); }
+  }
+}
+
+.moodIcon {
+  color: $teal-primary;
+  transition: color 0.3s;
+}
+
+.moodLabel {
+  font-family: $font-body;
+  font-size: 0.58rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $teal-mid;
+  transition: color 0.3s;
+}
+
+// ── Insight quote ─────────────────────────────────────────
+.insightRow {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.insightIcon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border: 1px solid rgba($teal-primary, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $teal-primary;
+  margin-top: 0.25rem;
+}
+
+.quote {
+  font-family: $font-body;
+  font-size: 1rem;
+  font-weight: 400;
+  font-style: italic;
+  color: $teal-deep;
+  line-height: 1.75;
+  border-left: 2px solid $gold;
+  padding-left: 1.1rem;
+}
+
+// ── Progress / habits ─────────────────────────────────────
+.progressBar {
+  width: 100%;
+  height: 2px;
+  background: rgba($teal-primary, 0.12);
+  margin-bottom: 1.6rem;
+  position: relative;
+}
+
+.progressFill {
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(90deg, $teal-deep, $teal-primary);
+}
+
+.progressPct {
+  position: absolute;
+  right: 0;
+  top: -1.4rem;
+  font-family: $font-body;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: $teal-primary;
+}
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba($teal-primary, 0.08);
+
+  &:last-child { border-bottom: none; }
+}
+
+.taskText {
+  font-family: $font-body;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: $teal-dark;
+
+  &.done {
+    color: $teal-primary;
+    text-decoration: line-through;
+    text-decoration-color: rgba($teal-primary, 0.4);
+  }
+}
+
+// ── Chart ─────────────────────────────────────────────────
+.chartWrap {
+  height: 175px;
+  width: 100%;
+}
+
+// ── Responsive ────────────────────────────────────────────
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+
+  // Reset borders for single column
+  .card {
+    border-right: 1px solid rgba($teal-primary, 0.12);
+
+    &:nth-last-child(-n+2) { border-bottom: 1px solid rgba($teal-primary, 0.12); }
+    &:last-child            { border-bottom: none; }
+  }
+
+  .section { padding: $section-pad-sm 0; }
+}

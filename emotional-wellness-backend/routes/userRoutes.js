@@ -8,7 +8,7 @@ const {
   updateUser,
   deleteUser
 } = require('../controllers/usercontroller');
-const { protect, authorize } = require('../middelware/authmiddelware');
+const { protect, authorize } = require('../middleware/authMiddleware');
 
 // All routes are protected
 router.use(protect);

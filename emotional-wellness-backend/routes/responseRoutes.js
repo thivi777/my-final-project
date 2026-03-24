@@ -8,7 +8,7 @@ const {
   getAllResponses,
   updateResponse
 } = require('../controllers/responseController');
-const { protect, authorize } = require('../middelware/authmiddelware');
+const { protect, authorize } = require('../middleware/authMiddleware');
 
 // All routes are protected
 router.use(protect);

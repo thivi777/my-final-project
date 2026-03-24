@@ -1,0 +1,219 @@
+/* [project]/src/components/HowItWorksSection.module.scss.module.css [app-client] (css) */
+.HowItWorksSection-module-scss-module__ngG_IG__section {
+  background: #e0f4f1;
+  padding: 5.5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.HowItWorksSection-module-scss-module__ngG_IG__section:before {
+  content: "";
+  background: linear-gradient(90deg, #0000, #1541124d, #0000);
+  height: 1px;
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+}
+
+.HowItWorksSection-module-scss-module__ngG_IG__blob1 {
+  pointer-events: none;
+  background: radial-gradient(circle, #c4895a1a 0%, #0000 70%);
+  border-radius: 50%;
+  width: 36vw;
+  height: 36vw;
+  position: absolute;
+  top: -8rem;
+  right: -6rem;
+}
+
+.HowItWorksSection-module-scss-module__ngG_IG__blob2 {
+  pointer-events: none;
+  background: radial-gradient(circle, #2d4f491a 0%, #0000 70%);
+  border-radius: 50%;
+  width: 28vw;
+  height: 28vw;
+  position: absolute;
+  bottom: -4rem;
+  left: -4rem;
+}
+
+.HowItWorksSection-module-scss-module__ngG_IG__wrapper {
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(2rem, 6vw, 7rem);
+  position: relative;
+}
+
+.HowItWorksSection-module-scss-module__ngG_IG__header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.HowItWorksSection-module-scss-module__ngG_IG__labelRow {
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: 1.25rem;
+  display: inline-flex;
+}
+
+.HowItWorksSection-module-scss-module__ngG_IG__labelLine {
+  background: #c4895a;
+  width: 24px;
+  height: 1px;
+}
+
+.HowItWorksSection-module-scss-module__ngG_IG__labelText {
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: #154112;
+  font-family: DM Sans, sans-serif;
+  font-size: .6rem;
+  font-weight: 400;
+}
+
+.HowItWorksSection-module-scss-module__ngG_IG__title {
+  color: #031e19;
+  letter-spacing: -.01em;
+  margin: 0;
+  font-family: Playfair Display, serif;
+  font-size: clamp(2.4rem, 4.8vw, 4rem);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.HowItWorksSection-module-scss-module__ngG_IG__title em {
+  color: #2d4f49;
+  font-style: italic;
+}
+
+.HowItWorksSection-module-scss-module__ngG_IG__subtitle {
+  color: #1a3c37;
+  max-width: 500px;
+  margin: 1.25rem auto 0;
+  font-family: Cormorant Garamond, serif;
+  font-size: 1.12rem;
+  font-weight: 300;
+  line-height: 1.75;
+}
+
+.HowItWorksSection-module-scss-module__ngG_IG__steps {
+  flex-direction: column;
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.HowItWorksSection-module-scss-module__ngG_IG__step {
+  grid-template-columns: 80px 1fr;
+  display: grid;
+}
+
+@media (max-width: 480px) {
+  .HowItWorksSection-module-scss-module__ngG_IG__step {
+    grid-template-columns: 56px 1fr;
+  }
+}
+
+.HowItWorksSection-module-scss-module__ngG_IG__spine {
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1.5rem;
+  display: flex;
+}
+
+.HowItWorksSection-module-scss-module__ngG_IG__numberBox {
+  z-index: 2;
+  background: #faf9f6;
+  border: 1px solid #c4895a66;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  position: relative;
+  box-shadow: 0 2px 16px #c4895a26;
+}
+
+.HowItWorksSection-module-scss-module__ngG_IG__numberLabel {
+  color: #2d4f49;
+  letter-spacing: .05em;
+  font-family: Cormorant Garamond, serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.HowItWorksSection-module-scss-module__ngG_IG__line {
+  background: linear-gradient(#c4895a66, #1541121a);
+  flex: 1;
+  width: 1px;
+  min-height: 60px;
+}
+
+.HowItWorksSection-module-scss-module__ngG_IG__step:last-child .HowItWorksSection-module-scss-module__ngG_IG__line {
+  display: none;
+}
+
+.HowItWorksSection-module-scss-module__ngG_IG__body {
+  border-bottom: 1px solid #1541121a;
+  padding: 1.5rem 0 3rem 2.5rem;
+  position: relative;
+}
+
+@media (max-width: 480px) {
+  .HowItWorksSection-module-scss-module__ngG_IG__body {
+    padding: 1rem 0 2rem 1.25rem;
+  }
+}
+
+.HowItWorksSection-module-scss-module__ngG_IG__step:last-child .HowItWorksSection-module-scss-module__ngG_IG__body {
+  border-bottom: none;
+}
+
+.HowItWorksSection-module-scss-module__ngG_IG__bgNumber {
+  color: #2d4f490d;
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+  font-family: Playfair Display, serif;
+  font-size: 7rem;
+  font-weight: 700;
+  line-height: 1;
+  position: absolute;
+  top: 1rem;
+  right: -1rem;
+}
+
+.HowItWorksSection-module-scss-module__ngG_IG__iconBox {
+  color: #154112;
+  background: #1541121a;
+  border: 1px solid #15411233;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  margin-bottom: 1rem;
+  display: flex;
+}
+
+.HowItWorksSection-module-scss-module__ngG_IG__stepTitle {
+  color: #031e19;
+  margin-bottom: .55rem;
+  font-family: Playfair Display, serif;
+  font-size: 1.55rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.HowItWorksSection-module-scss-module__ngG_IG__stepDesc {
+  color: #1a3c37;
+  max-width: 520px;
+  font-family: Cormorant Garamond, serif;
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1.75;
+}
+
+/*# sourceMappingURL=src_components_HowItWorksSection_module_scss_module_css_bad6b30c._.single.css.map*/

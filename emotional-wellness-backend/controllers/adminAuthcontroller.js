@@ -1,12 +1,7 @@
 const Admin = require('../models/Admin');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
-
-// Create JWT token
-const createToken = (admin) => {
-  return jwt.sign({ id: admin._id, role: admin.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
-};
+const { createToken } = require('../utils/token');
 
 // ---------------- REGISTER ADMIN ----------------
 exports.register = async (req, res) => {
@@ -123,10 +118,69 @@ exports.resetPassword = async (req, res) => {
   }
 };
 
+// ---------------- GET ALL ADMINS ----------------
+exports.getAllAdmins = async (req, res) => {
+  try {
+    const admins = await Admin.find().select('-password');
+    res.status(200).json({ success: true, count: admins.length, data: admins });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Server Error', error: err.message });
+  }
+};
+
+// ---------------- GET ADMIN BY ID ----------------
+exports.getAdminById = async (req, res) => {
+  try {
+    const admin = await Admin.findById(req.params.id).select('-password');
+    if (!admin) return res.status(404).json({ success: false, message: 'Admin not found' });
+    res.status(200).json({ success: true, data: admin });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Server Error', error: err.message });
+  }
+};
+
+// ---------------- UPDATE ADMIN ----------------
+exports.updateAdmin = async (req, res) => {
+  try {
+    const updates = req.body;
+    if (updates.password) {
+      updates.password = await bcrypt.hash(updates.password, 10);
+    }
+
+    const updatedAdmin = await Admin.findByIdAndUpdate(req.params.id, updates, { 
+      new: true,
+      runValidators: true 
+    }).select('-password');
+
+    if (!updatedAdmin) return res.status(404).json({ success: false, message: 'Admin not found' });
+
+    res.status(200).json({ success: true, data: updatedAdmin });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Server Error', error: err.message });
+  }
+};
+
+// ---------------- DELETE ADMIN ----------------
+exports.deleteAdmin = async (req, res) => {
+  try {
+    const admin = await Admin.findById(req.params.id);
+    if (!admin) return res.status(404).json({ success: false, message: 'Admin not found' });
+
+    await admin.deleteOne();
+    res.status(200).json({ success: true, message: 'Admin removed' });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Server Error', error: err.message });
+  }
+};
+
 module.exports = {
   register: exports.register,
   login: exports.login,
   logout: exports.logout,
   forgotPassword: exports.forgotPassword,
-  resetPassword: exports.resetPassword
+  resetPassword: exports.resetPassword,
+  getAllAdmins: exports.getAllAdmins,
+  getAdminById: exports.getAdminById,
+  updateAdmin: exports.updateAdmin,
+  deleteAdmin: exports.deleteAdmin
 };

@@ -1,0 +1,214 @@
+// src/components/HowItWorksSection.module.scss
+@use '@/styles/abstracts' as *;
+
+.section {
+  padding: $section-pad 0;
+  background: $teal-soft; // Using the soft teal background
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba($teal-primary, 0.3), transparent);
+  }
+}
+
+.blob1 {
+  position: absolute;
+  top: -8rem;
+  right: -6rem;
+  width: 36vw;
+  height: 36vw;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba($gold, 0.1) 0%, transparent 70%);
+}
+
+.blob2 {
+  position: absolute;
+  bottom: -4rem;
+  left: -4rem;
+  width: 28vw;
+  height: 28vw;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba($teal-medium, 0.1) 0%, transparent 70%);
+}
+
+.wrapper {
+  max-width: $container;
+  margin: 0 auto;
+  padding: 0 clamp(2rem, 6vw, 7rem);
+  position: relative;
+  z-index: 1;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.labelRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.labelLine {
+  width: 24px;
+  height: 1px;
+  background: $gold;
+}
+
+.labelText {
+  font-family: $font-sans;
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: $teal-primary;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: clamp(2.4rem, 4.8vw, 4rem);
+  font-weight: 400;
+  color: $teal-dark;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin: 0;
+
+  em {
+    font-style: italic;
+    color: $teal-medium;
+  }
+}
+
+.subtitle {
+  font-family: $font-serif;
+  font-size: 1.12rem;
+  font-weight: 300;
+  color: $teal-mid;
+  max-width: 500px;
+  margin: 1.25rem auto 0;
+  line-height: 1.75;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+
+  @include mobile {
+    grid-template-columns: 56px 1fr;
+  }
+}
+
+.spine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1.5rem;
+}
+
+.numberBox {
+  width: 52px;
+  height: 52px;
+  border: 1px solid rgba($gold, 0.4);
+  background: $off-white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 2px 16px rgba($gold, 0.15);
+}
+
+.numberLabel {
+  font-family: $font-serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: $teal-medium;
+  letter-spacing: 0.05em;
+}
+
+.line {
+  width: 1px;
+  flex: 1;
+  min-height: 60px;
+  background: linear-gradient(to bottom, rgba($gold, 0.4), rgba($teal-primary, 0.1));
+}
+
+.step:last-child .line {
+  display: none;
+}
+
+.body {
+  padding: 1.5rem 0 3rem 2.5rem;
+  border-bottom: 1px solid rgba($teal-primary, 0.1);
+  position: relative;
+
+  @include mobile {
+    padding: 1rem 0 2rem 1.25rem;
+  }
+}
+
+.step:last-child .body {
+  border-bottom: none;
+}
+
+.bgNumber {
+  position: absolute;
+  right: -1rem;
+  top: 1rem;
+  font-family: $font-display;
+  font-size: 7rem;
+  font-weight: 700;
+  color: rgba($teal-medium, 0.05);
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+.iconBox {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 1rem;
+  background: rgba($teal-primary, 0.1);
+  border: 1px solid rgba($teal-primary, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $teal-primary;
+}
+
+.stepTitle {
+  font-family: $font-display;
+  font-size: 1.55rem;
+  font-weight: 400;
+  color: $teal-dark;
+  margin-bottom: 0.55rem;
+  line-height: 1.2;
+}
+
+.stepDesc {
+  font-family: $font-serif;
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: $teal-mid;
+  max-width: 520px;
+}

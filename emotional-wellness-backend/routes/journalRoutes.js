@@ -7,7 +7,7 @@ const {
   updateJournal,
   deleteJournal
 } = require('../controllers/journalController');
-const { protect } = require('../middelware/authmiddelware');
+const { protect } = require('../middleware/authMiddleware');
 
 // All routes are protected
 router.use(protect);

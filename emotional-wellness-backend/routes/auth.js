@@ -3,6 +3,9 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 
+const { check } = require('express-validator');
+const { validate } = require('../middleware/validation');
+
 const { 
   register, 
   login, 
@@ -12,13 +15,43 @@ const {
 } = require('../controllers/authcontroller');  // make sure all functions are exported
 
 // ----- Local authentication routes -----
-router.post('/register', register);
-router.post('/login', login);
+router.post(
+  '/register', 
+  validate([
+    check('name', 'Name is required').notEmpty(),
+    check('email', 'Please include a valid email').isEmail(),
+    check('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 })
+  ]),
+  register
+);
+
+router.post(
+  '/login', 
+  validate([
+    check('email', 'Please include a valid email').isEmail(),
+    check('password', 'Password is required').exists()
+  ]),
+  login
+);
+
 router.post('/logout', logout);
 
 // Use PUT for reset-password because it updates the password
-router.post('/forgot-password', forgotPassword);
-router.put('/reset-password/:token', resetPassword);
+router.post(
+  '/forgot-password', 
+  validate([
+    check('email', 'Please include a valid email').isEmail()
+  ]),
+  forgotPassword
+);
+
+router.put(
+  '/reset-password/:token', 
+  validate([
+    check('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 })
+  ]),
+  resetPassword
+);
 
 // ----- Google OAuth routes -----
 

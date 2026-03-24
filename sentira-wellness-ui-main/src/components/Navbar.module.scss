@@ -1,0 +1,175 @@
+@use '@/styles/abstracts' as *;
+
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: $z-nav;
+  transition: $transition-slow;
+
+  &.scrolled {
+    background: rgba(250, 249, 246, 0.97);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba($teal-primary, 0.15);
+    box-shadow: 0 4px 40px rgba($teal-deep, 0.08);
+  }
+}
+
+.inner {
+  max-width: $container;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// ── Brand ──────────────────────────────────────────────────
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.logoRing {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba($gold, 0.4);
+  flex-shrink: 0;
+  box-shadow: 0 2px 16px rgba($gold, 0.2);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+  }
+}
+
+.brandName {
+  font-family: $font-display;
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: $teal-dark;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+// ── Desktop nav ────────────────────────────────────────────
+.desktopLinks {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.link {
+  font-family: $font-body;
+  font-size: 0.71rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $teal-mid;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 2px;
+  transition: color 0.3s;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 1px;
+    background: $gold;
+    transition: width 0.3s;
+  }
+
+  &:hover {
+    color: $teal-dark;
+
+    &::after { width: 100%; }
+  }
+}
+
+.cta {
+  font-family: $font-body;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $teal-dark;
+  background: linear-gradient(135deg, $gold, $gold-light);
+  text-decoration: none;
+  padding: 0.62rem 1.5rem;
+  border: 1px solid $gold;
+  transition: $transition;
+  box-shadow: $shadow-gold;
+
+  &:hover {
+    background: linear-gradient(135deg, #b8943a, $gold);
+    box-shadow: 0 4px 20px rgba($gold, 0.35);
+  }
+}
+
+.divider {
+  width: 1px;
+  height: 20px;
+  background: rgba($teal-primary, 0.2);
+}
+
+// ── Mobile toggle ──────────────────────────────────────────
+.toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: $teal-dark;
+  padding: 4px;
+}
+
+// ── Mobile menu ────────────────────────────────────────────
+.mobileMenu {
+  position: fixed;
+  top: 72px; left: 0; right: 0;
+  background: $off-white;
+  border-bottom: 1px solid rgba($teal-primary, 0.15);
+  padding: 1.5rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: 0 20px 60px rgba($teal-deep, 0.12);
+}
+
+.mobileLink {
+  font-family: $font-body;
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $teal-mid;
+  text-decoration: none;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba($teal-primary, 0.1);
+}
+
+.mobileCta {
+  font-family: $font-body;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $teal-dark;
+  background: linear-gradient(135deg, $gold, $gold-light);
+  text-decoration: none;
+  padding: 0.8rem 1.5rem;
+  text-align: center;
+  margin-top: 0.75rem;
+}
+
+// ── Responsive ─────────────────────────────────────────────
+@media (max-width: 768px) {
+  .desktopLinks { display: none; }
+  .toggle       { display: block; }
+}

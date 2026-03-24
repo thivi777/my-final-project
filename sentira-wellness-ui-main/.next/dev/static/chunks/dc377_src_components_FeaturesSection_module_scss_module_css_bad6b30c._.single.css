@@ -1,0 +1,194 @@
+/* [project]/document/my final project/sentira-wellness-ui-main/src/components/FeaturesSection.module.scss.module.css [app-client] (css) */
+.FeaturesSection-module-scss-module__zKNaCG__section {
+  background: #faf9f6;
+  padding: 5.5rem 0;
+  position: relative;
+}
+
+.FeaturesSection-module-scss-module__zKNaCG__section:before {
+  content: "";
+  background: linear-gradient(90deg, #0000, #15411240, #0000);
+  height: 1px;
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+}
+
+.FeaturesSection-module-scss-module__zKNaCG__wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(2rem, 6vw, 7rem);
+}
+
+.FeaturesSection-module-scss-module__zKNaCG__header {
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  gap: 3rem;
+  margin-bottom: 5rem;
+  display: grid;
+}
+
+@media (max-width: 1024px) {
+  .FeaturesSection-module-scss-module__zKNaCG__header {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.FeaturesSection-module-scss-module__zKNaCG__labelRow {
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+}
+
+.FeaturesSection-module-scss-module__zKNaCG__labelLine {
+  background: #c4895a;
+  width: 32px;
+  height: 1px;
+}
+
+.FeaturesSection-module-scss-module__zKNaCG__labelText {
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: #154112;
+  font-family: DM Sans, sans-serif;
+  font-size: .6rem;
+  font-weight: 400;
+}
+
+.FeaturesSection-module-scss-module__zKNaCG__title {
+  color: #031e19;
+  letter-spacing: -.01em;
+  margin: 0;
+  font-family: Playfair Display, serif;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.FeaturesSection-module-scss-module__zKNaCG__title em {
+  color: #2d4f49;
+  font-style: italic;
+}
+
+.FeaturesSection-module-scss-module__zKNaCG__description {
+  color: #1a3c37;
+  font-family: Cormorant Garamond, serif;
+  font-size: 1.15rem;
+  font-weight: 300;
+  line-height: 1.75;
+}
+
+.FeaturesSection-module-scss-module__zKNaCG__grid {
+  border-top: 1px solid #15411226;
+  border-left: 1px solid #15411226;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  display: grid;
+}
+
+@media (max-width: 1024px) {
+  .FeaturesSection-module-scss-module__zKNaCG__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .FeaturesSection-module-scss-module__zKNaCG__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.FeaturesSection-module-scss-module__zKNaCG__card {
+  background: #faf9f6;
+  border-bottom: 1px solid #15411226;
+  border-right: 1px solid #15411226;
+  padding: 2.5rem 1.75rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.FeaturesSection-module-scss-module__zKNaCG__card:before {
+  content: "";
+  z-index: 0;
+  background: linear-gradient(135deg, #2d4f49, #154112);
+  transition: transform .5s cubic-bezier(.4, 0, .2, 1);
+  position: absolute;
+  inset: 0;
+  transform: translateY(100%);
+}
+
+.FeaturesSection-module-scss-module__zKNaCG__card:hover:before {
+  transform: translateY(0);
+}
+
+.FeaturesSection-module-scss-module__zKNaCG__card > * {
+  z-index: 1;
+  position: relative;
+}
+
+.FeaturesSection-module-scss-module__zKNaCG__card:hover .FeaturesSection-module-scss-module__zKNaCG__number, .FeaturesSection-module-scss-module__zKNaCG__card:hover .FeaturesSection-module-scss-module__zKNaCG__cardDesc {
+  color: #e0f4f1a6;
+}
+
+.FeaturesSection-module-scss-module__zKNaCG__card:hover .FeaturesSection-module-scss-module__zKNaCG__cardTitle {
+  color: #faf9f6;
+}
+
+.FeaturesSection-module-scss-module__zKNaCG__card:hover .FeaturesSection-module-scss-module__zKNaCG__iconWrap {
+  background: #e0f4f11a;
+  border-color: #e0f4f133;
+}
+
+.FeaturesSection-module-scss-module__zKNaCG__card:hover .FeaturesSection-module-scss-module__zKNaCG__icon {
+  color: #b8e0d8;
+}
+
+.FeaturesSection-module-scss-module__zKNaCG__number {
+  letter-spacing: .2em;
+  color: #c4895a;
+  margin-bottom: 1.5rem;
+  font-family: Cormorant Garamond, serif;
+  font-size: .78rem;
+  font-weight: 400;
+  transition: color .4s;
+}
+
+.FeaturesSection-module-scss-module__zKNaCG__iconWrap {
+  border: 1px solid #15411233;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 1.5rem;
+  transition: all .4s;
+  display: flex;
+}
+
+.FeaturesSection-module-scss-module__zKNaCG__icon {
+  color: #154112;
+  transition: color .4s;
+}
+
+.FeaturesSection-module-scss-module__zKNaCG__cardTitle {
+  color: #031e19;
+  margin-bottom: .75rem;
+  font-family: Playfair Display, serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  line-height: 1.3;
+  transition: color .4s;
+}
+
+.FeaturesSection-module-scss-module__zKNaCG__cardDesc {
+  color: #1a3c37;
+  font-family: Cormorant Garamond, serif;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.7;
+  transition: color .4s;
+}
+
+/*# sourceMappingURL=dc377_src_components_FeaturesSection_module_scss_module_css_bad6b30c._.single.css.map*/

@@ -3,22 +3,41 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 
+const { protect, authorize } = require('../middleware/authMiddleware');
+
 const { 
   register, 
   login, 
   logout, 
   forgotPassword, 
-  resetPassword 
-} = require('../controllers/adminAuthcontroller');  // make sure all functions are exported
+  resetPassword,
+  getAllAdmins,
+  getAdminById,
+  updateAdmin,
+  deleteAdmin
+} = require('../controllers/adminAuthcontroller');
 
 // ----- Local authentication routes -----
 router.post('/register', register);
 router.post('/login', login);
 router.post('/logout', logout);
 
-// Use PUT for reset-password because it updates the password
+// Password reset routes
 router.post('/forgot-password', forgotPassword);
 router.put('/reset-password/:token', resetPassword);
+
+// ----- Admin CRUD routes (Protected) -----
+router.use(protect);
+router.use(authorize('admin'));
+
+router.route('/admins')
+  .get(getAllAdmins);
+
+router.route('/admins/:id')
+  .get(getAdminById)
+  .put(updateAdmin)
+  .delete(deleteAdmin);
+
 
 // ----- Google OAuth routes -----
 

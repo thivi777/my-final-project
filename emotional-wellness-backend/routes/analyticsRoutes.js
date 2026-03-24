@@ -1,0 +1,10 @@
+const express = require('express');
+const router = express.Router();
+const { getWellnessSummary } = require('../controllers/analyticsController');
+const { protect } = require('../middleware/authMiddleware');
+
+router.use(protect);
+
+router.get('/summary', getWellnessSummary);
+
+module.exports = router;

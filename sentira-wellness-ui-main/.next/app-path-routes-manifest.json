@@ -1,0 +1,20 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/admin/admins/page": "/admin/admins",
+  "/admin/login/page": "/admin/login",
+  "/admin/page": "/admin",
+  "/admin/users/page": "/admin/users",
+  "/app/activities/page": "/app/activities",
+  "/app/insights/page": "/app/insights",
+  "/app/mood/page": "/app/mood",
+  "/app/page": "/app",
+  "/app/profile/page": "/app/profile",
+  "/dashboard/page": "/dashboard",
+  "/forgot-password/page": "/forgot-password",
+  "/login/page": "/login",
+  "/onboarding/page": "/onboarding",
+  "/page": "/",
+  "/register/page": "/register",
+  "/reset-password/[token]/page": "/reset-password/[token]"
+}

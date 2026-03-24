@@ -1,0 +1,289 @@
+@use '@/styles/abstracts' as *;
+
+// ── Root ──────────────────────────────────────────────────
+.root {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+// ── Hero banner ───────────────────────────────────────────
+.hero {
+  background: linear-gradient(135deg, $teal-dark, $teal-deep);
+  padding: 3rem;
+  margin-bottom: 1.5px;
+  position: relative;
+  overflow: hidden;
+
+  // Gold top border
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, $gold, $gold-light, $gold);
+  }
+}
+
+.heroBlob1 {
+  position: absolute;
+  top: -4rem; right: -4rem;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba($teal-primary, 0.2) 0%, transparent 70%);
+}
+
+.heroBlob2 {
+  position: absolute;
+  bottom: -3rem; left: -3rem;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba($gold, 0.1) 0%, transparent 70%);
+}
+
+// Large decorative S
+.heroBg {
+  position: absolute;
+  right: -2rem; bottom: -3rem;
+  font-family: $font-display;
+  font-size: 11rem;
+  font-weight: 700;
+  color: rgba($gold, 0.06);
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+.heroInner {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+}
+
+// ── Avatar ────────────────────────────────────────────────
+.avatarWrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 88px;
+  height: 88px;
+  background: rgba(224, 244, 241, 0.1);
+  border: 2px solid rgba($gold, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-display;
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: $gold-light;
+  overflow: hidden;
+  border-radius: 50%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.cameraBtn {
+  position: absolute;
+  bottom: -4px; right: -4px;
+  width: 27px; height: 27px;
+  background: $gold;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $teal-dark;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.avatarWrap:hover .cameraBtn { opacity: 1; }
+
+// ── Hero text ─────────────────────────────────────────────
+.name {
+  font-family: $font-display;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: $off-white;
+  line-height: 1.1;
+  margin-bottom: 0.3rem;
+}
+
+.email {
+  font-family: $font-body;
+  font-size: 1rem;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(224, 244, 241, 0.5);
+  margin-bottom: 1rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.actionBtn {
+  font-family: $font-body;
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba($gold-light, 0.65);
+  background: rgba($gold, 0.08);
+  border: 1px solid rgba($gold, 0.2);
+  padding: 0.48rem 1.1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.25s;
+
+  &:hover {
+    background: rgba($gold, 0.14);
+    color: $off-white;
+    border-color: rgba($gold, 0.35);
+  }
+}
+
+// ── Info grid ─────────────────────────────────────────────
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: rgba($teal-primary, 0.1);
+  border: 1px solid rgba($teal-primary, 0.15);
+  border-top: none;
+}
+
+.card {
+  background: $off-white;
+  padding: 2rem;
+  border-right: 1px solid rgba($teal-primary, 0.12);
+
+  &:last-child { border-right: none; }
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba($teal-primary, 0.1);
+}
+
+.cardIcon { color: $teal-primary; }
+
+.cardTitle {
+  font-family: $font-display;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: $teal-dark;
+}
+
+// Rows
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba($teal-primary, 0.07);
+
+  &:last-child { border-bottom: none; }
+}
+
+.rowLabel {
+  font-family: $font-body;
+  font-size: 0.62rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $teal-primary;
+}
+
+.rowValue {
+  font-family: $font-body;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: $teal-dark;
+}
+
+// ── Toggle rows ───────────────────────────────────────────
+.toggleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.82rem 0;
+  border-bottom: 1px solid rgba($teal-primary, 0.07);
+  cursor: pointer;
+  transition: opacity 0.2s;
+
+  &:last-child { border-bottom: none; }
+  &:hover { opacity: 0.8; }
+}
+
+.toggleLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.toggleIcon { color: $teal-primary; }
+
+.toggleName {
+  font-family: $font-body;
+  font-size: 0.74rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: $teal-dark;
+}
+
+.toggle {
+  width: 36px;
+  height: 20px;
+  position: relative;
+  transition: background 0.3s;
+
+  &.on  { background: $teal-deep; }
+  &.off { background: rgba($teal-primary, 0.15); }
+}
+
+.toggleDot {
+  position: absolute;
+  top: 3px;
+  width: 14px;
+  height: 14px;
+  background: $off-white;
+  transition: left 0.3s;
+
+  .toggle.on  & { left: 19px; }
+  .toggle.off & { left: 3px;  }
+}
+
+// ── Responsive ────────────────────────────────────────────
+@media (max-width: 680px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    border-right: none;
+    border-bottom: 1px solid rgba($teal-primary, 0.12);
+
+    &:last-child { border-bottom: none; }
+  }
+
+  .hero { padding: 2rem; }
+}
