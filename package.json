@@ -1,0 +1,13 @@
+{
+  "name": "sentira-wellness",
+  "version": "1.0.0",
+  "description": "Sentira Wellness Full Stack Application",
+  "scripts": {
+    "dev:ui": "cd sentira-wellness-ui-main && npm run dev",
+    "dev:api": "cd emotional-wellness-backend && npm run dev",
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:ui\""
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

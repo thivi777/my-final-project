@@ -1,0 +1,169 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/mixins' as *;
+
+.adminLayout {
+  display: flex;
+  min-height: 100vh;
+  background: $teal-dark;
+  position: relative;
+  overflow: hidden;
+}
+
+.mainWrapper {
+  flex: 1;
+  margin-left: 280px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 10;
+
+  @media (max-width: 1024px) {
+    margin-left: 80px;
+  }
+
+  @media (max-width: 640px) {
+    margin-left: 0;
+  }
+}
+
+.content {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+
+  @media (max-width: 640px) {
+    padding: 1.5rem;
+  }
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.chartSection {
+  background: rgba($white, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba($white, 0.08);
+  border-radius: 24px;
+  padding: 2rem;
+  
+  h2 {
+    font-family: $font-display;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $white;
+    margin-bottom: 2rem;
+  }
+}
+
+.tableSection {
+  background: rgba($white, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba($white, 0.08);
+  border-radius: 24px;
+  overflow: hidden;
+  
+  .tableHeader {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid rgba($white, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+      font-family: $font-display;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: $white;
+      margin: 0;
+    }
+  }
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+
+  th {
+    padding: 1rem 2rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: rgba($white, 0.4);
+    letter-spacing: 0.05em;
+  }
+
+  td {
+    padding: 1rem 2rem;
+    font-size: 0.9rem;
+    color: rgba($white, 0.7);
+    border-top: 1px solid rgba($white, 0.03);
+  }
+
+  tr:hover td {
+    background: rgba($white, 0.02);
+  }
+}
+
+.activityInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: $gold;
+    box-shadow: 0 0 8px $gold;
+  }
+}
+
+.auroraBg {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.blob1, .blob2 {
+  position: absolute;
+  filter: blur(120px);
+  border-radius: 50%;
+  opacity: 0.12;
+  animation: moveBlob 25s infinite alternate ease-in-out;
+}
+
+.blob1 {
+  width: 800px;
+  height: 800px;
+  background: $teal-primary;
+  top: -300px;
+  right: -200px;
+}
+
+.blob2 {
+  width: 600px;
+  height: 600px;
+  background: $gold-deep;
+  bottom: -200px;
+  left: -200px;
+  animation-delay: -7s;
+}
+
+@keyframes moveBlob {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(-50px, 80px) scale(1.05); }
+}

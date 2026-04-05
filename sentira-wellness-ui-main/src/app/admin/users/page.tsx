@@ -33,6 +33,7 @@ export default function UserManagementPage() {
     try {
       setLoading(true);
       const token = localStorage.getItem("adminToken");
+<<<<<<< HEAD
       const res = await axios.get("http://localhost:5000/api/users", {
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -44,6 +45,27 @@ export default function UserManagementPage() {
         description: "Could not retrieve user list from server.", 
         variant: "destructive" 
       });
+=======
+      if (!token || token === "undefined") {
+        setLoading(false);
+        return;
+      }
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const res = await axios.get(`${apiUrl}/api/users`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setUsers(res.data.data.users || res.data.data || []);
+    } catch (err: any) {
+      console.error("Failed to fetch users:", err);
+      // Don't show toast if it's an auth error (let layout handles redirect)
+      if (err.response?.status !== 401 && err.response?.status !== 403) {
+        toast({ 
+          title: "Connection Error", 
+          description: "Could not retrieve user list from server.", 
+          variant: "destructive" 
+        });
+      }
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
     } finally {
       setLoading(false);
     }
@@ -58,7 +80,12 @@ export default function UserManagementPage() {
     
     try {
       const token = localStorage.getItem("adminToken");
+<<<<<<< HEAD
       await axios.delete(`http://localhost:5000/api/users/${id}`, {
+=======
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      await axios.delete(`${apiUrl}/api/users/${id}`, {
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
         headers: { Authorization: `Bearer ${token}` }
       });
       toast({ title: "User Deleted", description: "The account has been removed from the system." });

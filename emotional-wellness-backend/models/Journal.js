@@ -20,6 +20,10 @@ const journalSchema = new mongoose.Schema({
     default: 'Calm'
   },
   tags: [String],
+<<<<<<< HEAD
+=======
+  aiReflection: String,
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
   date: {
     type: Date,
     default: Date.now

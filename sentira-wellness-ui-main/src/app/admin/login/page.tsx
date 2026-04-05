@@ -21,7 +21,12 @@ export default function AdminLoginPage() {
     e.preventDefault();
     setLoading(true);
     try {
+<<<<<<< HEAD
       const res = await axios.post("http://localhost:5000/api/admin/auth/login", {
+=======
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const res = await axios.post(`${apiUrl}/api/admin/auth/login`, {
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
         email,
         password,
       });

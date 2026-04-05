@@ -41,7 +41,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   const handleSignOut = () => {
     localStorage.removeItem("adminToken");
+<<<<<<< HEAD
     window.location.href = "/admin/login";
+=======
+    window.location.href = "/";
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
   };
 
   return (

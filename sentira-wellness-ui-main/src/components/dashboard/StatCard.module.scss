@@ -1,0 +1,108 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/mixins' as *;
+
+.card {
+  position: relative;
+  background: rgba($white, 0.03);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba($white, 0.08);
+  border-radius: 24px;
+  padding: 1.5rem;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  &:hover {
+    transform: translateY(-5px);
+    background: rgba($white, 0.05);
+    border-color: rgba($white, 0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+
+    .glow {
+      opacity: 1;
+    }
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.iconWrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .iconWrap {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.trend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-family: $font-ui;
+
+  &.up {
+    background: rgba(#10b981, 0.1);
+    color: #10b981;
+  }
+
+  &.down {
+    background: rgba(#ef4444, 0.1);
+    color: #ef4444;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.value {
+  font-family: $font-display;
+  font-size: 2rem;
+  font-weight: 700;
+  color: $white;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.label {
+  font-family: $font-body;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba($white, 0.5);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.description {
+  font-size: 0.7rem;
+  color: rgba($white, 0.3);
+  margin-top: 4px;
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: -1;
+}

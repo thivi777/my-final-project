@@ -1,0 +1,699 @@
+@use '@/styles/abstracts' as *;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+// ═══════════════════════════════════════════════════════════════════════════════
+//  PSYCHOLOGY-BASED COLOUR PALETTE: VIOLET TRANQUILITY
+//  Rooted in colour psychology & therapeutic design principles:
+//
+//  Violet tones → creativity, spiritual awareness, transformation
+//  Lavender     → calm, healing, gentle clarity
+//  Soft Lilac   → tenderness, mindfulness, soft focus
+//  Warm Ivory   → luminous, open, nurturing foundation
+//  Blush Mauve  → compassion, emotional warmth
+//
+//  #5b3d8a  violet-mid      primary violet — depth, transformation
+//  #9b7fd4  lavender        healing midtone — calm, gentleness
+//  #c4b0e8  lilac           mindful accent — clarity, focus
+//  #f7f4ff  warm-ivory      hero background — luminous, open, nurturing
+//  #d4a0c0  blush-mauve     compassion accent — emotional warmth
+//  #e8e0f5  dusty-grape     section transition / soft contrast
+// ═══════════════════════════════════════════════════════════════════════════════
+
+
+// ─── Keyframes ────────────────────────────────────────────────────────────────
+
+@keyframes fogReveal {
+  0%   { opacity: 0; filter: blur(24px); transform: translateY(44px) scale(0.9); }
+  55%  { opacity: 1; filter: blur(3px);  transform: translateY(-5px) scale(1.02); }
+  100% { opacity: 1; filter: blur(0);    transform: translateY(0) scale(1); }
+}
+
+@keyframes leafShimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -50% center; }
+}
+
+@keyframes dotPulse {
+  0%,100% { box-shadow: 0 0 0 0   rgba(155, 127, 212, 0.55); }
+  50%     { box-shadow: 0 0 0 7px rgba(155, 127, 212, 0); }
+}
+
+@keyframes barRise {
+  from { opacity: 0; transform: translateY(56px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes breathe {
+  from { transform: translateY(-2px); }
+  to   { transform: translateY(100vh); }
+}
+
+@keyframes arrowBounce {
+  0%,100% { transform: translateX(-50%) translateY(0);    opacity: 0.55; }
+  50%     { transform: translateX(-50%) translateY(10px); opacity: 1; }
+}
+
+@keyframes underlineExpand {
+  from { width: 0; }
+  to   { width: 72%; }
+}
+
+@keyframes pillPop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes vignettePulse {
+  0%,100% { opacity: 0.65; }
+  50%     { opacity: 0.82; }
+}
+
+@keyframes shimmerSweep {
+  0%   { left: -100%; }
+  100% { left: 160%; }
+}
+
+
+// ─── Hero shell ───────────────────────────────────────────────────────────────
+
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 750px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: 'Outfit', sans-serif;
+
+  // Vibrant Modern Lavender & Gold Gradient
+  background:
+    // Deep Purple transformative glow
+    radial-gradient(circle at 75% 15%, 
+      rgba($brand-purple, 0.15) 0%, 
+      rgba($brand-lavender, 0.08) 45%, 
+      transparent 80%
+    ),
+    // Vibrant Gold compassion warmth
+    radial-gradient(circle at 10% 90%, 
+      rgba($brand-gold, 0.18) 0%, 
+      rgba($brand-lavender, 0.05) 60%, 
+      transparent 90%
+    ),
+    // Soft Lavender foundation
+    linear-gradient(135deg, 
+      $dark-base 0%, 
+      rgba($brand-lavender, 0.4) 50%, 
+      $dark-surface 100%
+    );
+}
+
+// ── Deco Symbol ───────────────────────────────────────────────
+.symbolWrap {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bgSymbol {
+  position: absolute;
+  top: 15%;
+  right: -5%;
+  font-family: $font-display;
+  font-size: min(45vw, 700px);
+  font-weight: 700;
+  // Deep Purple symbol with low opacity
+  color: rgba($brand-purple, 0.045);
+  user-select: none;
+  line-height: 1;
+  filter: blur(1.5px);
+  animation: floatSymbol 24s ease-in-out infinite;
+
+  @media (max-width: 900px) {
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    font-size: 85vw;
+    opacity: 0.025;
+  }
+}
+
+@keyframes floatSymbol {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-40px) rotate(3deg); }
+}
+
+// ── imageWrap & heroBg — hidden, kept so TSX doesn't break ───────────────────
+.imageWrap {
+  display: none;
+}
+
+.heroBg {
+  display: none;
+}
+
+
+// ─── Overlay stack ────────────────────────────────────────────────────────────
+
+.overlay {
+  position: absolute; inset: 0; z-index: 2;
+  background:
+    linear-gradient(to bottom,
+      transparent              0%,
+      transparent              45%,
+      rgba($dark-base, 0.35)  75%,
+      rgba($dark-surface, 0.70) 100%
+    );
+  pointer-events: none;
+}
+
+.tint {
+  position: absolute; inset: 0; z-index: 1;
+  background:
+    // Soft lilac pulse — layered depth
+    radial-gradient(ellipse 42% 35% at 28% 8%,
+      rgba(196, 176, 232, 0.14)  0%,
+      transparent             60%
+    ),
+    // Deep violet depth — rich centered presence
+    radial-gradient(ellipse 58% 58% at 50% 50%,
+      rgba(91, 61, 138, 0.06)     0%,
+      transparent             70%
+    );
+  pointer-events: none;
+}
+
+// Subtle grain — adds organic tactile texture
+.grain {
+  position: absolute; inset: 0; z-index: 2;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 155px;
+  pointer-events: none;
+}
+
+// Soft vignette — warmth at edges, not harshness
+.vignette {
+  position: absolute; inset: 0; z-index: 2;
+  background: radial-gradient(ellipse 100% 100% at 50% 50%, transparent 40%, rgba(155, 127, 212, 0.18) 100%);
+  animation: vignettePulse 9s ease-in-out infinite;
+  pointer-events: none;
+}
+
+// Scanline — sage-to-terracotta sweep
+.scanline {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(155, 127, 212, 0.18),
+    rgba(212, 160, 192, 0.12),
+    transparent
+  );
+  z-index: 3;
+  pointer-events: none;
+  animation: breathe 16s linear infinite;
+}
+
+
+// ─── Content grid ─────────────────────────────────────────────────────────────
+
+.content {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 4rem;
+  width: 100%;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    padding: 8.5rem 1.5rem 5rem;
+    text-align: center;
+  }
+}
+
+
+// ─── Left ─────────────────────────────────────────────────────────────────────
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  opacity: 0;
+  margin-bottom: 1.25rem;
+
+  &.visible { animation: slideUp 0.7s ease forwards; }
+
+  @media (max-width: 900px) {
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.eyeLine {
+  width: 28px; height: 1.5px;
+  background: linear-gradient(90deg, #5b3d8a, #9b7fd4);
+}
+
+.eyeText {
+  font-size: 0.62rem; font-weight: 500;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(91, 61, 138, 0.80);
+}
+
+.title {
+  margin: 4rem 0 1.8rem;
+  line-height: 1.0;
+  letter-spacing: -0.025em;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.word { display: block; overflow: visible; }
+
+.letter {
+  display: inline-block;
+  opacity: 0;
+
+  &.visible { animation: fogReveal 0.95s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+}
+
+// Line 1 — italic light, warm earth (grounding tone)
+.htLight {
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(44,36,24,0.82);
+}
+
+// Line 2 — bold, deep forest (strong, trustworthy)
+.htBold {
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 700;
+  color: #1A1626;
+}
+
+// Line 3 — sage-to-terracotta shimmer (growth meeting warmth)
+.htAccent {
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 700;
+  font-style: italic;
+  display: inline-block;
+  position: relative;
+
+  background: linear-gradient(100deg,
+    #5b3d8a  0%,
+    #9b7fd4 16%,
+    #c4b0e8 32%,
+    #d4a0c0 50%,   // ← mauve crossover (compassion warmth)
+    #9b7fd4 68%,
+    #5b3d8a 86%,
+    #9b7fd4 100%
+  );
+  background-size: 280% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: leafShimmer 7s linear infinite;
+
+  // Static underline — mauve warmth
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -4px;
+    height: 2px; width: 0;
+    background: linear-gradient(90deg, #5b3d8a, #d4a0c0);
+    animation: underlineExpand 1.2s ease 1.8s forwards;
+  }
+}
+
+// Accent line — single-unit fade in (override letter opacity since gradient uses -webkit-text-fill-color)
+.htAccentAnim {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s ease 0.55s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.55s;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+// ─── Subheadline ──────────────────────────────────────────────────────────────
+
+.sub {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-weight: 300;
+  line-height: 1.75;
+  color: rgba(44,36,24,0.62);
+  max-width: 480px;
+  margin: 0 0 2.2rem;
+  opacity: 0;
+
+  &.visible { animation: slideUp 0.8s ease 0.22s forwards; }
+
+  @media (max-width: 900px) { margin: 0 auto 2rem; }
+}
+
+
+// ─── Mood widget ──────────────────────────────────────────────────────────────
+
+.moodBar {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.65rem 0.75rem;
+  // Warm ivory glass card
+  background: rgba(251, 248, 255, 0.72);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(155, 127, 212, 0.18);
+  border-radius: 16px;
+  margin-bottom: 1.8rem;
+  max-width: 440px;
+  box-shadow: 0 4px 24px rgba(91, 61, 138, 0.08);
+  opacity: 0;
+
+  &.visible { animation: slideUp 0.75s ease 0.3s forwards; }
+
+  @media (max-width: 900px) { margin: 0 auto 1.8rem; }
+}
+
+.moodLabel {
+  font-size: 0.62rem; font-weight: 400;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(44,36,24,0.45);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.moodPills { display: flex; gap: 0.28rem; flex: 1; }
+
+.moodPill {
+  flex: 1;
+  font-size: 0.7rem; font-weight: 500;
+  padding: 0.55rem 0.15rem; border-radius: 11px;
+  border: none; cursor: pointer;
+  background: transparent;
+  color: rgba(44,36,24,0.42);
+  transition: all 0.22s ease;
+  text-align: center; white-space: nowrap;
+
+  // Active — violet (transformation, focus)
+  &.active {
+    background: linear-gradient(135deg, #5b3d8a, #9b7fd4);
+    color: #f7f4ff;
+    font-weight: 700;
+    box-shadow: 0 3px 14px rgba(91, 61, 138, 0.35);
+    animation: pillPop 0.25s ease forwards;
+  }
+
+  &:hover:not(.active) {
+    background: rgba(155, 127, 212, 0.10);
+    color: rgba(44,36,24,0.78);
+  }
+}
+
+.moodSubmit {
+  font-size: 0.7rem; font-weight: 600;
+  // Violet-to-mauve — transformation meeting compassion
+  background: linear-gradient(135deg, #9b7fd4 0%, #d4a0c0 100%);
+  color: #f7f4ff;
+  border: none; cursor: pointer;
+  padding: 0.65rem 1.2rem; border-radius: 11px;
+  white-space: nowrap;
+  transition: all 0.28s;
+  flex-shrink: 0;
+  box-shadow: 0 3px 14px rgba(91, 61, 138, 0.22);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(212, 160, 192, 0.35);
+  }
+}
+
+
+// ─── CTAs ─────────────────────────────────────────────────────────────────────
+
+.ctas {
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  opacity: 0;
+
+  &.visible { animation: slideUp 0.8s ease 0.38s forwards; }
+
+  @media (max-width: 900px) {
+    justify-content: center; gap: 0.8rem;
+  }
+}
+
+// Primary — violet mid, ivory text (transformation & clarity)
+.ctaPrimary {
+  font-size: 0.85rem; font-weight: 600;
+  color: #f7f4ff;
+  background: linear-gradient(135deg, #5b3d8a 0%, #9b7fd4 100%);
+  text-decoration: none;
+  padding: 0.92rem 2.1rem; border-radius: 100px;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  transition: all 0.3s;
+  box-shadow: 0 6px 28px rgba(91, 61, 138, 0.30);
+  position: relative; overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute; top: 0; left: -100%;
+    width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 36px rgba(91, 61, 138, 0.40);
+
+    &::before { animation: shimmerSweep 0.5s ease forwards; }
+  }
+}
+
+// Secondary — mauve glass border (compassion, invitation)
+.ctaSecondary {
+  font-size: 0.85rem; font-weight: 500;
+  color: rgba(212, 160, 192, 0.88);
+  background: rgba(212, 160, 192, 0.07);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(212, 160, 192, 0.28);
+  text-decoration: none;
+  padding: 0.9rem 1.8rem; border-radius: 100px;
+  transition: all 0.3s;
+
+  &:hover {
+    background: rgba(212, 160, 192, 0.12);
+    border-color: rgba(212, 160, 192, 0.48);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(212, 160, 192, 0.18);
+  }
+}
+
+
+// ─── Right — video scene card ─────────────────────────────────────────────────
+
+.right {
+  display: flex;
+  justify-content: center; align-items: center;
+  opacity: 0;
+
+  &.visible { animation: slideUp 0.9s ease 0.5s forwards; }
+
+  @media (max-width: 900px) { display: none; }
+}
+
+.videoCard {
+  width: 380px; max-width: 100%;
+  border-radius: 22px; overflow: hidden;
+  // Warm ivory glass — soft, therapeutic
+  background: rgba(251, 248, 255, 0.82);
+  backdrop-filter: blur(20px);
+  box-shadow:
+    0 0 0 1px rgba(155, 127, 212, 0.12),
+    0 24px 60px rgba(44,36,24,0.14),
+    0 0 80px rgba(91, 61, 138, 0.10);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+  &:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow:
+      0 0 0 1px rgba(155, 127, 212, 0.24),
+      0 32px 80px rgba(44,36,24,0.18),
+      0 0 100px rgba(155, 127, 212, 0.12);
+  }
+}
+
+.cardPreview {
+  width: 100%; aspect-ratio: 4 / 5;
+  overflow: hidden; position: relative;
+
+  video {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+
+  // Violet-ivory vignette at bottom
+  &::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 48%, rgba(247, 244, 255, 0.88) 100%);
+    pointer-events: none;
+  }
+}
+
+.cardInfo { padding: 0.9rem 1rem; }
+
+.cardTag {
+  display: inline-block;
+  font-size: 0.57rem; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: #5b3d8a;
+  background: rgba(91, 61, 138, 0.10);
+  border: 1px solid rgba(91, 61, 138, 0.20);
+  border-radius: 100px; padding: 0.26rem 0.7rem;
+  margin-bottom: 0.45rem;
+}
+
+.cardTitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem; font-weight: 600;
+  color: #1A1626; line-height: 1.3;
+  margin-bottom: 0.7rem;
+}
+
+.sceneDots { display: flex; gap: 0.42rem; align-items: center; }
+
+.sceneDot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: rgba(44,36,24,0.14);
+  border: none; cursor: pointer;
+  transition: all 0.25s; padding: 0;
+
+  // Active — lavender pill
+  &.dotActive {
+    background: #9b7fd4;
+    width: 22px; border-radius: 4px;
+    animation: dotPulse 2s ease-in-out infinite;
+  }
+
+  &:hover:not(.dotActive) {
+    background: rgba(155, 127, 212, 0.40);
+    transform: scale(1.2);
+  }
+}
+
+
+// ─── Scroll hint ──────────────────────────────────────────────────────────────
+
+.scrollHint {
+  position: absolute;
+  bottom: 5.5rem; left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  opacity: 0;
+  animation: slideUp 0.6s ease 3.4s forwards;
+}
+
+.scrollLabel {
+  font-size: 0.57rem; font-weight: 400;
+  letter-spacing: 0.26em; text-transform: uppercase;
+  color: rgba(91, 61, 138, 0.30);
+}
+
+.scrollMouse {
+  width: 22px; height: 36px;
+  border: 1.5px solid rgba(91, 61, 138, 0.20);
+  border-radius: 11px; position: relative;
+
+  &::after {
+    content: '';
+    position: absolute; top: 5px; left: 50%;
+    width: 3px; height: 8px;
+    background: #9b7fd4; border-radius: 2px;
+    animation: arrowBounce 2.2s ease-in-out infinite;
+  }
+}
+
+
+// ─── Bottom bar ───────────────────────────────────────────────────────────────
+
+.bar {
+  position: relative; z-index: 10;
+  // Warm ivory surface — continuous with hero, no harsh cut
+  background: rgba(247, 244, 255, 0.96);
+  backdrop-filter: blur(28px);
+  border-top: 1px solid rgba(155, 127, 212, 0.14);
+  opacity: 0;
+
+  &.visible { animation: barRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+}
+
+.barInner {
+  max-width: 1280px; margin: 0 auto;
+  padding: 1.1rem 2.5rem;
+  display: flex; align-items: center;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap; gap: 1rem; padding: 1rem 1.5rem;
+  }
+}
+
+.barItem {
+  display: flex; align-items: center; gap: 0.9rem;
+  flex: 1; padding: 0 1.4rem;
+
+  &:first-child { padding-left: 0; }
+  &:last-child  { padding-right: 0; }
+
+  @media (max-width: 768px) { padding: 0; min-width: 140px; }
+}
+
+// Separator — lavender (calming contrast)
+.barSep {
+  width: 1px; height: 36px;
+  background: rgba(196, 176, 232, 0.22);
+  flex-shrink: 0;
+
+  @media (max-width: 768px) { display: none; }
+}
+
+// Icon circle — violet-rimmed
+.barIcon {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 1.5px solid rgba(155, 127, 212, 0.25);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; flex-shrink: 0;
+  background: rgba(155, 127, 212, 0.06);
+}
+
+// Label — muted terracotta (warm, secondary)
+.barLabel {
+  font-size: 0.57rem; font-weight: 400;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(91, 61, 138, 0.52);
+  margin-bottom: 2px;
+}
+
+// Value — warm earth (primary readable text)
+.barValue {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem; font-weight: 600;
+  color: #1A1626;
+}

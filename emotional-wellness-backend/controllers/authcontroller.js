@@ -16,15 +16,38 @@ exports.register = async (req, res, next) => {
     }
 
     const hashedPassword = password ? await bcrypt.hash(password, 10) : undefined;
+<<<<<<< HEAD
+=======
+    
+    const verificationCode = crypto.randomInt(100000, 999999).toString();
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
 
     const user = new User({
       name,
       email,
       password: hashedPassword,
+<<<<<<< HEAD
       role: 'user'
     });
     
     await user.save();
+=======
+      role: 'user',
+      isVerified: false,
+      verificationCode
+    });
+    
+    await user.save();
+    
+    try {
+      const message = `Welcome to Sentira Wellness!\n\nYour verification code is: ${verificationCode}\n\nPlease enter this code in the onboarding screen to verify your email.`;
+      await sendEmail(user.email, 'Your Verification Code', message);
+    } catch (err) {
+      console.error('Error sending verification email:', err);
+      // We can still proceed even if email fails, but maybe log it.
+    }
+
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
     const token = createToken(user);
 
     return sendResponse(res, 201, true, 'User registered successfully', {
@@ -136,5 +159,65 @@ exports.googleCallback = (req, res) => {
     httpOnly: true, 
     secure: process.env.NODE_ENV === 'production' 
   });
+<<<<<<< HEAD
   return sendResponse(res, 200, true, 'Google login successful', { token });
+=======
+  
+  // Redirect to frontend callback route with token and user info
+  const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+  res.redirect(`${frontendUrl}/auth/callback?token=${token}&name=${encodeURIComponent(req.user.name)}`);
+};
+
+// ---------------- VERIFY EMAIL ----------------
+exports.verifyEmail = async (req, res, next) => {
+  const { code } = req.body;
+
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return sendResponse(res, 404, false, 'User not found');
+    }
+    
+    if (user.isVerified) {
+      return sendResponse(res, 400, false, 'User already verified');
+    }
+
+    if (user.verificationCode !== code) {
+      return sendResponse(res, 400, false, 'Invalid verification code');
+    }
+
+    user.isVerified = true;
+    user.verificationCode = undefined;
+    await user.save();
+
+    return sendResponse(res, 200, true, 'Email verified successfully');
+  } catch (err) {
+    next(err);
+  }
+};
+
+// ---------------- RESEND VERIFICATION EMAIL ----------------
+exports.resendVerificationEmail = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return sendResponse(res, 404, false, 'User not found');
+    }
+
+    if (user.isVerified) {
+      return sendResponse(res, 400, false, 'User already verified');
+    }
+
+    const verificationCode = crypto.randomInt(100000, 999999).toString();
+    user.verificationCode = verificationCode;
+    await user.save();
+
+    const message = `Your new verification code is: ${verificationCode}\n\nPlease enter this code in the onboarding screen to verify your email.`;
+    await sendEmail(user.email, 'Your New Verification Code', message);
+
+    return sendResponse(res, 200, true, 'Verification email resent');
+  } catch (err) {
+    next(err);
+  }
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
 };

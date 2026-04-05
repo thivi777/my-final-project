@@ -1,0 +1,188 @@
+@use '@/styles/abstracts' as *;
+
+// Psychology palette: warm ivory base, violet/lavender interactive elements
+
+.section {
+  padding: $section-pad 0;
+  background: #f7f4ff;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute; top: 0; left: 10%; right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(155, 127, 212, 0.20), rgba(212, 160, 192, 0.15), transparent);
+  }
+}
+
+.blob1 {
+  position: absolute; top: -8rem; left: -6rem;
+  width: 36vw; height: 36vw; border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(155, 127, 212, 0.10) 0%, transparent 70%);
+}
+
+.blob2 {
+  position: absolute; bottom: -4rem; right: -6rem;
+  width: 28vw; height: 28vw; border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(212, 160, 192, 0.08) 0%, transparent 70%);
+}
+
+.container {
+  max-width: $container; margin: 0 auto;
+  padding: 0 $container-pad; position: relative; z-index: 1;
+}
+
+.header { text-align: center; margin-bottom: 5rem; }
+
+.labelRow {
+  display: inline-flex; align-items: center;
+  gap: 0.75rem; margin-bottom: 1.25rem;
+}
+
+.labelLine { width: 24px; height: 1px; background: #5b3d8a; }
+
+.labelText {
+  font-family: $font-body; font-size: 0.6rem; font-weight: 400;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: #5b3d8a;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  font-weight: 400; color: #1A1626;
+  line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 1rem;
+
+  em { font-style: italic; color: #9b7fd4; }
+}
+
+.subtitle {
+  font-family: $font-body; font-size: 1.05rem; font-weight: 300;
+  color: rgba(26, 22, 38, 0.65); max-width: 500px;
+  margin: 0 auto; line-height: 1.75;
+}
+
+// 2-column grid
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: rgba(155, 127, 212, 0.03);
+  border: 1px solid rgba(155, 127, 212, 0.08);
+}
+
+.card {
+  background: transparent;
+  padding: 2.25rem;
+  border-right: 1px solid rgba(155, 127, 212, 0.08);
+  border-bottom: 1px solid rgba(155, 127, 212, 0.08);
+
+  &:nth-child(even)      { border-right: none; }
+  &:nth-last-child(-n+2) { border-bottom: none; }
+}
+
+.cardLabel {
+  font-family: $font-body; font-size: 0.58rem; font-weight: 400;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  color: #5b3d8a; margin-bottom: 0.4rem;
+}
+
+.cardTitle {
+  font-family: $font-display; font-size: 1.25rem; font-weight: 400;
+  color: #1A1626; margin-bottom: 1.6rem; line-height: 1.2;
+}
+
+// Mood check-in
+.moods { display: flex; gap: 1.5px; background: rgba(155, 127, 212, 0.12); }
+
+.moodBtn {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; gap: 0.55rem;
+  padding: 1.1rem 0.75rem;
+  background: rgba(247, 244, 255, 0.60); border: none; cursor: pointer;
+  transition: all 0.3s; text-align: center;
+
+  &:hover { background: rgba(155, 127, 212, 0.08); }
+
+  &.active {
+    background: #5b3d8a;
+    .moodIcon  { color: #f7f4ff; }
+    .moodLabel { color: rgba(247, 244, 255, 0.85); }
+  }
+}
+
+.moodIcon  { color: #5b3d8a; transition: color 0.3s; }
+.moodLabel {
+  font-family: $font-body; font-size: 0.58rem; font-weight: 400;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(26, 22, 38, 0.42); transition: color 0.3s;
+}
+
+// Quote / insight
+.insightRow { display: flex; gap: 1.25rem; align-items: flex-start; }
+
+.insightIcon {
+  width: 40px; height: 40px; flex-shrink: 0;
+  border: 1px solid rgba(155, 127, 212, 0.28);
+  display: flex; align-items: center; justify-content: center;
+  color: #5b3d8a; margin-top: 0.25rem; border-radius: 8px;
+  background: rgba(155, 127, 212, 0.08);
+}
+
+.quote {
+  font-family: $font-body; font-size: 1rem; font-weight: 400;
+  font-style: italic; color: rgba(26, 22, 38, 0.75); line-height: 1.75;
+  border-left: 2px solid #d4a0c0; padding-left: 1.1rem;  // mauve — warmth
+}
+
+// Progress
+.progressBar {
+  width: 100%; height: 2px;
+  background: rgba(155, 127, 212, 0.15);
+  margin-bottom: 1.6rem; position: relative;
+}
+
+.progressFill {
+  height: 100%; width: 50%;
+  background: linear-gradient(90deg, #5b3d8a, #9b7fd4);
+}
+
+.progressPct {
+  position: absolute; right: 0; top: -1.4rem;
+  font-family: $font-body; font-size: 0.62rem; font-weight: 500;
+  letter-spacing: 0.12em; color: #5b3d8a;
+}
+
+.tasks { display: flex; flex-direction: column; gap: 0.6rem; }
+
+.task {
+  display: flex; align-items: center; gap: 0.7rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(155, 127, 212, 0.08);
+  &:last-child { border-bottom: none; }
+}
+
+.taskText {
+  font-family: $font-body; font-size: 0.95rem; font-weight: 400;
+  color: rgba(26, 22, 38, 0.72);
+
+  &.done {
+    color: rgba(26, 22, 38, 0.30);
+    text-decoration: line-through;
+    text-decoration-color: rgba(155, 127, 212, 0.38);
+  }
+}
+
+.chartWrap { height: 175px; width: 100%; }
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+  .card {
+    border-right: none;
+    border-bottom: 1px solid rgba(155, 127, 212, 0.12);
+    &:last-child { border-bottom: none; }
+  }
+}
+

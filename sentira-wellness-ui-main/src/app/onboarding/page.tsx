@@ -65,6 +65,7 @@ const STEPS: StepDef[] = [
         placeholder: "e.g. Alex", label: "Your name or nickname",
       },
       {
+<<<<<<< HEAD
         id: "email_verify", type: "options", icon: <MailCheck className="w-5 h-5" />,
         q: "Let's quickly verify your email",
         sub: "We've sent a code to your inbox. Have you seen it?",
@@ -72,6 +73,12 @@ const STEPS: StepDef[] = [
           { i: "✅", t: "Yes, I've verified it" },
           { i: "📩", t: "Resend verification code" },
         ],
+=======
+        id: "email_verify", type: "text", icon: <MailCheck className="w-5 h-5" />,
+        q: "Let's quickly verify your email",
+        sub: "We've sent a 6-digit code to your inbox. Please enter it below.",
+        placeholder: "e.g. 123456", label: "Verification Code",
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
       },
       {
         id: "age", type: "options", icon: <UserPlus className="w-5 h-5" />,
@@ -323,17 +330,28 @@ export default function OnboardingPage() {
     try {
       const token = localStorage.getItem("token");
       
+<<<<<<< HEAD
       // Calculate a simple wellness score (example logic)
       const wellnessScore = 75; // This could be calculated from answers
 
       // Transform answers dictionary into an array of { question, answer }
+=======
+      const wellnessScore = 75; 
+
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
       const formattedAnswers = Object.entries(answers).map(([key, val]) => ({
         question: key,
         answer: String(val)
       }));
 
+<<<<<<< HEAD
       await axios.post(
         "http://localhost:5000/api/responses",
+=======
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      await axios.post(
+        `${apiUrl}/api/responses`,
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
         {
           answers: formattedAnswers,
           wellnessScore,
@@ -356,8 +374,33 @@ export default function OnboardingPage() {
     }
   };
 
+<<<<<<< HEAD
   function tryNext() {
     if (!isAnswered()) return;
+=======
+  async function tryNext() {
+    if (!isAnswered()) return;
+
+    if (q.id === "email_verify") {
+      try {
+        setIsSubmitting(true);
+        setError(null);
+        const token = localStorage.getItem("token");
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+        await axios.post(
+          `${apiUrl}/api/auth/verify-email`,
+          { code: answers["email_verify"] },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+      } catch (err: any) {
+        setError(err.response?.data?.message || "Invalid verification code");
+        setIsSubmitting(false);
+        return;
+      }
+      setIsSubmitting(false);
+    }
+
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
     if (curQ < step.questions.length - 1) {
       setCurQ(curQ + 1);
     } else if (curStep < STEPS.length - 1) {
@@ -381,16 +424,25 @@ export default function OnboardingPage() {
   const isLastQ = curQ === step.questions.length - 1 && curStep === STEPS.length - 1;
 
   return (
+<<<<<<< HEAD
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden px-4 py-12 bg-slate-50"
       style={{ background: "linear-gradient(135deg, hsl(280, 40%, 95%) 0%, hsl(170, 40%, 95%) 50%, hsl(330, 40%, 95%) 100%)" }}
     >
       {/* Background blobs */}
+=======
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden px-4 py-12 bg-background"
+      style={{ background: "linear-gradient(135deg, hsl(var(--primary) / 0.03) 0%, hsl(var(--secondary)) 50%, hsl(var(--accent) / 0.03) 100%)" }}
+    >
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
       <div className="absolute top-[-10%] left-[-5%] w-96 h-96 rounded-full opacity-30 blur-3xl bg-purple-300" />
       <div className="absolute bottom-[-10%] right-[-5%] w-[30rem] h-[30rem] rounded-full opacity-20 blur-3xl bg-teal-300" />
       <div className="absolute top-[20%] right-[10%] w-64 h-64 rounded-full opacity-20 blur-3xl bg-pink-300" />
 
       <div className="w-full max-w-lg relative z-10 space-y-8">
+<<<<<<< HEAD
         {/* Header / Progress */}
+=======
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
         <div className="space-y-6">
           <div className="flex items-center justify-between px-2">
             <div className="flex items-center gap-3">
@@ -417,7 +469,10 @@ export default function OnboardingPage() {
           </div>
         </div>
 
+<<<<<<< HEAD
         {/* Step Indicators (Horizontal) */}
+=======
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
         <div className="flex justify-between items-center px-1">
           {STEPS.map((s, i) => (
             <div key={i} className="flex flex-col items-center gap-2 group">
@@ -437,7 +492,10 @@ export default function OnboardingPage() {
           ))}
         </div>
 
+<<<<<<< HEAD
         {/* Card */}
+=======
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
         <AnimatePresence mode="wait">
           {finished ? (
             <motion.div
@@ -478,13 +536,19 @@ export default function OnboardingPage() {
               className="bg-white/80 backdrop-blur-2xl rounded-[2.5rem] p-8 sm:p-10 border border-white shadow-2xl relative overflow-hidden"
               style={{ boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.08)" }}
             >
+<<<<<<< HEAD
               {/* Question background icon (faded) */}
+=======
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
               <div className="absolute -top-10 -right-10 opacity-[0.03] scale-[4] rotate-12 text-slate-900 pointer-events-none">
                 {q.icon}
               </div>
 
               <div className="space-y-8 relative z-10">
+<<<<<<< HEAD
                 {/* Question Info */}
+=======
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
                 <div className="space-y-4 text-center">
                   <div className="inline-flex p-4 rounded-[1.5rem] bg-gradient-to-br from-purple-500 to-purple-600 text-white shadow-xl shadow-purple-200 mb-2">
                     {q.icon}
@@ -505,7 +569,10 @@ export default function OnboardingPage() {
                   )}
                 </div>
 
+<<<<<<< HEAD
                 {/* Input Area */}
+=======
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
                 <div className="space-y-4">
                   {q.type === "text" && (
                     <div className="space-y-2">
@@ -518,6 +585,36 @@ export default function OnboardingPage() {
                         onKeyDown={(e) => e.key === "Enter" && tryNext()}
                         className="h-16 rounded-2xl border-2 border-slate-100 bg-white/50 focus:bg-white focus:border-purple-500 focus:ring-purple-200 text-lg font-medium transition-all px-6 shadow-sm"
                       />
+<<<<<<< HEAD
+=======
+                      {q.id === "email_verify" && (
+                        <div className="pt-3 text-center">
+                          <button 
+                            className="text-sm font-semibold text-purple-600 hover:text-purple-800 transition" 
+                            onClick={async () => {
+                              try {
+                                setIsSubmitting(true);
+                                setError(null);
+                                const token = localStorage.getItem("token");
+                                const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+                                await axios.post(
+                                  `${apiUrl}/api/auth/resend-verification`,
+                                  {},
+                                  { headers: { Authorization: `Bearer ${token}` } }
+                                );
+                                alert("Verification code resent successfully!");
+                              } catch (err: any) {
+                                setError(err.response?.data?.message || "Failed to resend code");
+                              } finally {
+                                setIsSubmitting(false);
+                              }
+                            }}
+                          >
+                            Didn't receive it? Resend code
+                          </button>
+                        </div>
+                      )}
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
                     </div>
                   )}
 
@@ -586,7 +683,10 @@ export default function OnboardingPage() {
                   )}
                 </div>
 
+<<<<<<< HEAD
                 {/* Footer Controls */}
+=======
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
                 <div className="flex items-center gap-4 pt-4 border-t border-slate-50">
                   {(curQ > 0 || curStep > 0) && (
                     <Button 
@@ -622,7 +722,10 @@ export default function OnboardingPage() {
                 </div>
               </div>
 
+<<<<<<< HEAD
               {/* Progress counter */}
+=======
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
               <div className="absolute bottom-4 left-0 right-0 text-center">
                 <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-300">
                   Que {globalQ + 1} of {totalQ}
@@ -634,12 +737,15 @@ export default function OnboardingPage() {
       </div>
 
       <style jsx global>{`
+<<<<<<< HEAD
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap');
         
         body {
           font-family: 'Outfit', sans-serif !important;
         }
 
+=======
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
         .backdrop-blur-2xl {
           backdrop-filter: blur(40px) saturate(180%);
         }

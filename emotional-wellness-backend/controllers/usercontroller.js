@@ -19,10 +19,23 @@ exports.getAllUsers = async (req, res, next) => {
 // @access  Private
 exports.getUserProfile = async (req, res, next) => {
   try {
+<<<<<<< HEAD
     const user = await User.findById(req.user.id).select('-password');
     if (!user) {
       return sendResponse(res, 404, false, 'User not found');
     }
+=======
+    const user = await User.findById(req.user.id).select('-password').lean();
+    if (!user) {
+      return sendResponse(res, 404, false, 'User not found');
+    }
+
+    // Check if onboarding is completed
+    const Response = require('../models/Response');
+    const onboardingResponse = await Response.findOne({ user: req.user.id, type: 'onboarding' });
+    user.onboardingCompleted = !!onboardingResponse;
+
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
     return sendResponse(res, 200, true, 'User profile fetched successfully', user);
   } catch (err) {
     next(err);

@@ -22,7 +22,12 @@ export default function ForgotPasswordPage() {
     e.preventDefault();
     setLoading(true);
     try {
+<<<<<<< HEAD
       const response = await axios.post("http://localhost:5000/api/auth/forgot-password", {
+=======
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const response = await axios.post(`${apiUrl}/api/auth/forgot-password`, {
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
         email,
       });
 

@@ -16,8 +16,13 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
+<<<<<<< HEAD
         <html lang="en">
             <body>
+=======
+        <html lang="en" suppressHydrationWarning>
+            <body suppressHydrationWarning>
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
                 <Providers>
                     <TooltipProvider>
                         {children}

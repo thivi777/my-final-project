@@ -1,5 +1,6 @@
 "use client";
 
+<<<<<<< HEAD
 import { useState, useEffect } from "react";
 import { 
   Users, 
@@ -11,6 +12,14 @@ import {
   History
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+=======
+import React, { useState, useEffect } from "react";
+import { 
+  Users, 
+  UserCheck, 
+  UserPlus,
+} from "lucide-react";
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
 import { 
   AreaChart, 
   Area, 
@@ -21,6 +30,13 @@ import {
   ResponsiveContainer 
 } from "recharts";
 import axios from "axios";
+<<<<<<< HEAD
+=======
+import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
+import DashboardHeader from "@/components/dashboard/DashboardHeader";
+import StatCard from "@/components/dashboard/StatCard";
+import styles from "./AdminDashboard.module.scss";
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
 
 // Mock data for the chart as per wireframe inspiration
 const moodTrendsData = [
@@ -49,8 +65,15 @@ export default function AdminOverviewPage() {
     const fetchStats = async () => {
       try {
         const token = localStorage.getItem("adminToken");
+<<<<<<< HEAD
         const response = await axios.get("http://localhost:5000/api/users", { 
           headers: { Authorization: `Bearer ${token}` } 
+=======
+        const headers = { Authorization: `Bearer ${token}` };
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+        const response = await axios.get(`${apiUrl}/api/users`, { 
+          headers 
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
         });
         
         const users = response.data.data || [];
@@ -69,6 +92,7 @@ export default function AdminOverviewPage() {
   }, []);
 
   return (
+<<<<<<< HEAD
     <div className="space-y-10 animate-in fade-in duration-500">
       <div className="flex items-center justify-between">
         <div>
@@ -123,11 +147,47 @@ export default function AdminOverviewPage() {
             Mood Trends Charts
          </div>
          <Card className="bg-slate-900 border-slate-800 shadow-xl p-8">
+=======
+    <div className={styles.adminLayout}>
+      <DashboardSidebar isAdmin={true} />
+      
+      <div className={styles.mainWrapper}>
+        <DashboardHeader userName="Admin" />
+        
+        <main className={styles.content}>
+          <div className={styles.statsGrid}>
+            <StatCard 
+              label="Total Users" 
+              value={stats?.totalUsers || 0} 
+              icon={Users} 
+              trend="+12%" 
+              color="#c4895a" 
+            />
+            <StatCard 
+              label="Active Users" 
+              value={stats?.activeUsers || 0} 
+              icon={UserCheck} 
+              trend="+5%" 
+              color="#10b981" 
+            />
+            <StatCard 
+              label="New Users" 
+              value={stats?.newUsers || 0} 
+              icon={UserPlus} 
+              trend="+18%" 
+              color="#3b82f6" 
+            />
+          </div>
+
+          <section className={styles.chartSection}>
+            <h2>Mood Trend Analytics</h2>
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
             <div className="h-[350px] w-full">
                <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={moodTrendsData}>
                      <defs>
                         <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
+<<<<<<< HEAD
                            <stop offset="5%" stopColor="#dc2626" stopOpacity={0.3} />
                            <stop offset="95%" stopColor="#dc2626" stopOpacity={0} />
                         </linearGradient>
@@ -136,24 +196,46 @@ export default function AdminOverviewPage() {
                      <XAxis 
                         dataKey="name" 
                         stroke="#475569" 
+=======
+                           <stop offset="5%" stopColor="#c4895a" stopOpacity={0.3} />
+                           <stop offset="95%" stopColor="#c4895a" stopOpacity={0} />
+                        </linearGradient>
+                     </defs>
+                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                     <XAxis 
+                        dataKey="name" 
+                        stroke="rgba(255,255,255,0.3)" 
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
                         fontSize={12} 
                         tickLine={false} 
                         axisLine={false} 
                      />
                      <YAxis 
+<<<<<<< HEAD
                         stroke="#475569" 
+=======
+                        stroke="rgba(255,255,255,0.3)" 
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
                         fontSize={12} 
                         tickLine={false} 
                         axisLine={false} 
                      />
                      <Tooltip 
+<<<<<<< HEAD
                         contentStyle={{ backgroundColor: '#0f172a', border: '1px solid #1e293b', borderRadius: '12px' }}
+=======
+                        contentStyle={{ backgroundColor: 'rgba(3, 30, 25, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', backdropFilter: 'blur(10px)' }}
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
                         itemStyle={{ color: '#fff' }}
                      />
                      <Area 
                         type="monotone" 
                         dataKey="value" 
+<<<<<<< HEAD
                         stroke="#dc2626" 
+=======
+                        stroke="#c4895a" 
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
                         strokeWidth={3}
                         fillOpacity={1} 
                         fill="url(#colorValue)" 
@@ -161,6 +243,7 @@ export default function AdminOverviewPage() {
                   </AreaChart>
                </ResponsiveContainer>
             </div>
+<<<<<<< HEAD
          </Card>
       </section>
 
@@ -191,16 +274,56 @@ export default function AdminOverviewPage() {
                            </td>
                            <td className="px-6 py-4 text-sm text-slate-400 font-mono italic">{ra.timestamp}</td>
                            <td className="px-6 py-4 text-sm text-slate-300 font-bold">{ra.user}</td>
+=======
+          </section>
+
+          <section className={styles.tableSection}>
+            <div className={styles.tableHeader}>
+              <h2>System Activity Logs</h2>
+              <button className="text-xs font-bold text-slate-500 hover:text-white transition-colors">Export CSV</button>
+            </div>
+            <div className={styles.tableWrapper}>
+               <table className={styles.table}>
+                  <thead>
+                     <tr>
+                        <th>Activity</th>
+                        <th>Timestamp</th>
+                        <th>User</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {recentActivity.map((ra, idx) => (
+                        <tr key={idx}>
+                           <td>
+                              <div className={styles.activityInfo}>
+                                 <div className={styles.dot} />
+                                 {ra.activity}
+                              </div>
+                           </td>
+                           <td className="italic opacity-50">{ra.timestamp}</td>
+                           <td className="font-bold opacity-80">{ra.user}</td>
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
                         </tr>
                      ))}
                   </tbody>
                </table>
             </div>
+<<<<<<< HEAD
             <div className="p-4 bg-slate-800/20 border-t border-slate-800 text-center">
                <button className="text-xs font-bold text-slate-500 hover:text-white transition-colors">View All Logs</button>
             </div>
          </Card>
       </section>
+=======
+          </section>
+        </main>
+      </div>
+
+      <div className={styles.auroraBg}>
+        <div className={styles.blob1} />
+        <div className={styles.blob2} />
+      </div>
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
     </div>
   );
 }

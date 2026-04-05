@@ -10,7 +10,12 @@ const adminSchema = new mongoose.Schema({
     default: "admin"      // default admin role
   },
   resetPasswordToken: String,
+<<<<<<< HEAD
   resetPasswordExpire: Date
+=======
+  resetPasswordExpire: Date,
+  googleId: { type: String }
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
 }, { timestamps: true });
 
 module.exports = mongoose.model("Admin", adminSchema);

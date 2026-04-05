@@ -1,9 +1,13 @@
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
 
+=======
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+<<<<<<< HEAD
 @layer base {
   :root {
     --background: 30 20% 98%; // Warm Cream/Off-white
@@ -58,5 +62,102 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-serif);
     font-weight: 500;
+=======
+/* ── Google Fonts ─────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
+/* ── Design Tokens (Tailwind / CSS vars) ──────────────────── */
+@layer base {
+  :root {
+    /* Premium Tranquility Palette - Base Tokens */
+    --color-primary:        263 38% 39%;   /* Violet Mid */
+    --color-primary-lt:     260 50% 92%;
+    
+    --color-secondary:      261 48% 92%;   /* Dusty Grape */
+    --color-accent:         323 37% 73%;   /* Blush Mauve */
+    
+    /* Tailwind theme mapping (Tranquil by default) */
+    --background:           255 100% 98%;   /* Warm Ivory */
+    --foreground:           263 30% 12%;    /* Deep Violet Night */
+
+    --card:                 0 0% 100%;
+    --card-foreground:      263 30% 12%;
+
+    --popover:              0 0% 100%;
+    --popover-foreground:   263 30% 12%;
+
+    --primary:              263 38% 39%;  /* #5B3D8A Violet Mid */
+    --primary-foreground:   255 100% 98%;
+
+    --secondary:            261 48% 92%;  /* Dusty Grape */
+    --secondary-foreground: 263 38% 30%;
+
+    --accent:               323 37% 73%;  /* Blush Mauve */
+    --accent-foreground:    263 30% 12%;
+
+    --muted:                261 20% 90%;
+    --muted-foreground:     261 20% 45%;
+
+    --border:               261 20% 88%;
+    --input:                261 20% 88%;
+    --ring:                 263 38% 39%;
+
+    --destructive:          0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background:           263 30% 6%;    /* Deep Violet Night */
+    --foreground:           261 20% 92%;
+    
+    --card:                 263 30% 8%;
+    --card-foreground:      261 20% 92%;
+    
+    --popover:              263 30% 6%;
+    --popover-foreground:   261 20% 92%;
+    
+    --primary:              260 50% 66%;   /* Brighter Lavender for dark mode */
+    --primary-foreground:   263 30% 6%;
+    
+    --secondary:            261 20% 15%;
+    --secondary-foreground: 261 20% 92%;
+    
+    --accent:               323 37% 73%;
+    --accent-foreground:    263 30% 6%;
+    
+    --muted:                261 20% 12%;
+    --muted-foreground:     261 10% 65%;
+    
+    --border:               261 20% 15%;
+    --input:                261 20% 15%;
+    --ring:                 260 50% 66%;
+  }
+}
+
+/* ── Base resets ──────────────────────────────────────────── */
+@layer base {
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .font-display, .font-serif {
+    font-family: 'Outfit', sans-serif; /* Moving display to Outfit for a modern geometric touch */
+  }
+  
+  .font-body, .font-sans {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
   }
 }

@@ -1,0 +1,173 @@
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/mixins' as *;
+
+.header {
+  height: 72px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  // Deep violet to match sidebar, slightly translucent for depth
+  background: rgba(26, 22, 38, 0.96);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(155, 127, 212, 0.12);
+  position: sticky;
+  top: 0;
+  z-index: 90;
+
+  @media (max-width: 640px) {
+    padding: 0 1rem;
+  }
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.menuBtn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: $white;
+  cursor: pointer;
+
+  @media (max-width: 1024px) {
+    display: block;
+  }
+}
+
+.greeting {
+  h1 {
+    font-family: $font-display;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: rgba($white, 0.7);
+    margin: 0;
+    line-height: 1.2;
+
+    span {
+      color: $white;
+      font-weight: 700;
+    }
+  }
+
+  p {
+    font-family: $font-body;
+    font-size: 0.8rem;
+    color: rgba($white, 0.4);
+    margin: 4px 0 0;
+  }
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.searchBar {
+  position: relative;
+  width: 300px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+
+  .searchIcon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba($white, 0.3);
+  }
+
+  input {
+    width: 100%;
+    background: rgba($white, 0.05);
+    border: 1px solid rgba($white, 0.1);
+    border-radius: 12px;
+    padding: 0.7rem 1rem 0.7rem 2.8rem;
+    color: $white;
+    font-family: $font-ui;
+    font-size: 0.85rem;
+    transition: all 0.3s;
+
+    &:focus {
+      outline: none;
+      background: rgba($white, 0.08);
+      border-color: rgba($gold, 0.5);
+      box-shadow: 0 0 15px rgba($gold, 0.15);
+    }
+
+    &::placeholder {
+      color: rgba($white, 0.25);
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.actionBtn {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba($white, 0.05);
+  border: 1px solid rgba($white, 0.1);
+  border-radius: 12px;
+  color: rgba($white, 0.6);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s;
+
+  &:hover {
+    color: $white;
+    background: rgba($white, 0.08);
+    border-color: rgba($white, 0.2);
+    transform: translateY(-2px);
+  }
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 8px;
+  height: 8px;
+  background: $gold;
+  border-radius: 50%;
+  border: 2px solid $violet-deep;
+  box-shadow: 0 0 8px $gold;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, $violet-primary, $violet-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $white;
+  border: 1px solid rgba($white, 0.1);
+  transition: all 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+    border-color: $gold;
+  }
+}

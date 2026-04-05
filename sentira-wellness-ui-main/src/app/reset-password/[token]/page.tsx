@@ -30,7 +30,12 @@ export default function ResetPasswordPage() {
 
     setLoading(true);
     try {
+<<<<<<< HEAD
       const response = await axios.put(`http://localhost:5000/api/auth/reset-password/${token}`, {
+=======
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const response = await axios.put(`${apiUrl}/api/auth/reset-password/${token}`, {
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
         password,
       });
 

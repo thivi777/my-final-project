@@ -25,7 +25,14 @@
     "mongoose": "^9.2.2",
     "morgan": "^1.10.1",
     "nodemailer": "^8.0.2",
+<<<<<<< HEAD
     "passport-google-oauth20": "^2.0.0"
+=======
+    "passport-apple": "^2.0.2",
+    "passport-facebook": "^3.0.0",
+    "passport-google-oauth20": "^2.0.0",
+    "stripe": "^21.0.1"
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
   },
   "devDependencies": {
     "nodemon": "^3.1.14"

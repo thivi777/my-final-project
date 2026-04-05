@@ -1,5 +1,6 @@
 "use client";
 
+<<<<<<< HEAD
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -79,10 +80,79 @@ const AuthSplitLayout = ({ children, mode, title, subtitle }: AuthSplitLayoutPro
           
           <div className="text-black/20 text-[10px] font-bold uppercase tracking-[0.3em]">
             SENTIRA WELLNESS • ARCHIVE 2024
+=======
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowLeft, Sparkles } from "lucide-react";
+import { useRouter } from "next/navigation";
+import s from "./AuthSplitLayout.module.scss";
+
+interface AuthSplitLayoutProps {
+  children: React.ReactNode;
+  mode: "login" | "register" | "forgot" | "reset";
+  title?: string;
+  subtitle?: string;
+}
+
+const PSYCHOLOGY_IMAGES = [
+  "/images/activity-meditation.jpg",
+  "/images/activity-breathing.jpg",
+  "/images/activity-journaling.jpg",
+];
+
+const AuthSplitLayout = ({ children, mode }: AuthSplitLayoutProps) => {
+  const router = useRouter();
+  const [currentImgIndex, setCurrentImgIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImgIndex((prev) => (prev + 1) % PSYCHOLOGY_IMAGES.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className={s.root}>
+      {/* Left Pane - Visual/Brand side */}
+      <div className={s.leftPane}>
+        <div className={s.carouselWrapper}>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentImgIndex}
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+              className={s.carouselImageContainer}
+            >
+              <Image
+                src={PSYCHOLOGY_IMAGES[currentImgIndex]}
+                alt="Psychology Wellness Background"
+                fill
+                priority
+                className={s.carouselImage}
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        <div className={s.leftTextContent}>
+          <h2>Over 50 different<br/>wellness exercises</h2>
+          <div className={s.dots}>
+            {PSYCHOLOGY_IMAGES.map((_, idx) => (
+              <span 
+                key={idx} 
+                className={`${s.dot} ${currentImgIndex === idx ? s.active : ""}`}
+              />
+            ))}
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
           </div>
         </div>
       </div>
 
+<<<<<<< HEAD
       {/* Right Side: Form with Glassmorphism container */}
       <div className="flex items-center justify-center p-6 sm:p-12 lg:p-24 bg-background relative overflow-y-auto">
         {/* Floating background shapes for mobile */}
@@ -97,6 +167,28 @@ const AuthSplitLayout = ({ children, mode, title, subtitle }: AuthSplitLayoutPro
             </Link>
           </div>
           {children}
+=======
+      {/* Right Pane - Form side */}
+      <div className={s.rightPane}>
+        <div className={s.formSideInner}>
+          
+          <Link href="/" className={s.brandHeader} style={{ textDecoration: 'none' }}>
+            <div className={s.brandLogoMark}>
+              <Sparkles size={18} />
+            </div>
+            <span className={s.brandName}>sentira</span>
+          </Link>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            key={mode}
+            className={s.formContentWrapper}
+          >
+            {children}
+          </motion.div>
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
         </div>
       </div>
     </div>

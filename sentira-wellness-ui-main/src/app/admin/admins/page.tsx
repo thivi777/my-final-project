@@ -34,7 +34,12 @@ export default function AdminManagementPage() {
     try {
       setLoading(true);
       const token = localStorage.getItem("adminToken");
+<<<<<<< HEAD
       const res = await axios.get("http://localhost:5000/api/admin/auth/admins", {
+=======
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const res = await axios.get(`${apiUrl}/api/admin/auth/admins`, {
+>>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
         headers: { Authorization: `Bearer ${token}` }
       });
       setAdmins(res.data.data || []);
