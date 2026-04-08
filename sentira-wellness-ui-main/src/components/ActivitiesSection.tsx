@@ -2,10 +2,10 @@
 import { Wind, Brain, BookOpen, PieChart } from "lucide-react";
 import Image from "next/image";
 import ScrollReveal from "@/components/ScrollReveal";
-const breathingImg = "/images/activity-breathing.jpg";
-const meditationImg = "/images/activity-meditation.jpg";
-const journalingImg = "/images/activity-journaling.jpg";
-const analyticsImg = "/images/activity-analytics.jpg";
+const breathingImg = "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80";
+const meditationImg = "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80";
+const journalingImg = "https://images.unsplash.com/photo-1455390582262-044cdead27d8?auto=format&fit=crop&w=800&q=80";
+const analyticsImg = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80";
 
 const activities = [
   {

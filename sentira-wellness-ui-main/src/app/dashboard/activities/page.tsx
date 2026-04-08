@@ -37,7 +37,7 @@ const activities = [
     duration: "4 min",
     category: "breathing",
     description: "Inhale 4s, hold 4s, exhale 4s, hold 4s. Repeat to calm your nervous system.",
-    image: "/images/activity-breathing.jpg",
+    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80",
   },
   {
     icon: Wind,
@@ -45,7 +45,7 @@ const activities = [
     duration: "5 min",
     category: "breathing",
     description: "A powerful technique to reduce anxiety and help you fall asleep faster.",
-    image: "/images/activity-breathing.jpg",
+    image: "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=800&q=80",
   },
   {
     icon: Brain,
@@ -53,7 +53,7 @@ const activities = [
     duration: "10 min",
     category: "meditation",
     description: "Slowly scan through your body, releasing tension from head to toe.",
-    image: "/images/activity-meditation.jpg",
+    image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80",
     premium: true,
     audioUrl: "https://assets.mixkit.co/music/preview/mixkit-soft-ambient-166.mp3"
   },
@@ -63,7 +63,7 @@ const activities = [
     duration: "8 min",
     category: "meditation",
     description: "Send warmth and compassion to yourself and others through guided meditation.",
-    image: "/images/activity-meditation.jpg",
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
     audioUrl: "https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3"
   },
   {
@@ -72,7 +72,7 @@ const activities = [
     duration: "10 min",
     category: "meditation",
     description: "Watch calming visuals accompanied by soothing music to find center.",
-    image: "/images/activity-meditation.jpg",
+    image: "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=800&q=80",
     videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-tree-branches-in-the-breeze-1188-large.mp4",
     audioUrl: "https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3"
   },
@@ -82,7 +82,7 @@ const activities = [
     duration: "5 min",
     category: "journaling",
     description: "Write down 3 things you're grateful for today. Shift your perspective.",
-    image: "/images/activity-journaling.jpg",
+    image: "https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=800&q=80",
   },
   {
     icon: BookOpen,
@@ -90,7 +90,7 @@ const activities = [
     duration: "7 min",
     category: "journaling",
     description: "Explore what you're feeling and why. Gain clarity through writing.",
-    image: "/images/activity-journaling.jpg",
+    image: "https://images.unsplash.com/photo-1455390582262-044cdead27d8?auto=format&fit=crop&w=800&q=80",
   },
   {
     icon: Wind,
@@ -98,7 +98,7 @@ const activities = [
     duration: "15 min",
     category: "breathing",
     description: "Multi-phase journey: Controlled breathing followed by deep-sleep audio.",
-    image: "/images/activity-breathing.jpg",
+    image: "https://images.unsplash.com/photo-1543264421-2e6b22eb0ee7?auto=format&fit=crop&w=800&q=80",
     premium: true,
     audioUrl: "https://assets.mixkit.co/music/preview/mixkit-night-forest-651.mp3"
   },
@@ -109,7 +109,7 @@ const activities = [
     category: "meditation",
     label: "Relaxation Music",
     description: "Soothe your mind with calming ambient sounds designed for deep relaxation.",
-    image: "/images/activity-meditation.jpg",
+    image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80",
     audioUrl: "https://assets.mixkit.co/music/preview/mixkit-delicate-piano-49.mp3"
   },
   {
@@ -119,7 +119,7 @@ const activities = [
     category: "meditation",
     label: "Loving Music",
     description: "Connect with feelings of love and compassion through gentle melodic tones.",
-    image: "/images/activity-meditation.jpg",
+    image: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=800&q=80",
     audioUrl: "https://assets.mixkit.co/music/preview/mixkit-sun-and-ocean-585.mp3"
   },
   {
@@ -129,7 +129,7 @@ const activities = [
     category: "meditation",
     label: "Guided Meditation",
     description: "A structured musical journey to help you maintain focus during your meditation.",
-    image: "/images/activity-meditation.jpg",
+    image: "https://images.unsplash.com/photo-1528319725582-ddc096101511?auto=format&fit=crop&w=800&q=80",
     audioUrl: "https://assets.mixkit.co/music/preview/mixkit-meditation-vibe-149.mp3"
   },
 ];

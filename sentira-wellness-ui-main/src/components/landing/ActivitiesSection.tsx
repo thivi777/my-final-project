@@ -7,25 +7,25 @@ const activities = [
     icon: Wind,
     title: "Breathing Exercises",
     subtitle: "Calm your nervous system",
-    image: "/images/activity-breathing.jpg",
+    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80",
   },
   {
     icon: Brain,
     title: "Meditation",
     subtitle: "Find inner peace",
-    image: "/images/hero-1.jpg",
+    image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80",
   },
   {
     icon: BookOpen,
     title: "Journaling",
     subtitle: "Express your thoughts",
-    image: "/images/activity-journaling.jpg",
+    image: "https://images.unsplash.com/photo-1455390582262-044cdead27d8?auto=format&fit=crop&w=800&q=80",
   },
   {
     icon: PieChart,
     title: "Emotional Analytics",
     subtitle: "Understand your patterns",
-    image: "/images/activity-analytics.jpg",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
