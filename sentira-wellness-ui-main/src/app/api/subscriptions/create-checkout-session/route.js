@@ -26,10 +26,19 @@ export async function POST(request) {
 
   try {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-    const { priceId } = await request.json();
+    const { priceId } = await request.json().catch(() => ({}));
+    
+    // Use priceId from request, or STRIPE_PRICE_ID, or fallback to the USD price from env
+    const effectivePriceId = priceId || process.env.STRIPE_PRICE_ID || process.env.NEXT_PUBLIC_STRIPE_PRICE_ID_USD;
+    
+    if (!effectivePriceId) {
+      console.error('Missing Stripe Price ID in request and environment');
+      return NextResponse.json({ success: false, message: 'Configuration error: Missing Price ID' }, { status: 500 });
+    }
+
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
-      line_items: [{ price: priceId || process.env.STRIPE_PRICE_ID, quantity: 1 }],
+      line_items: [{ price: effectivePriceId, quantity: 1 }],
       mode: 'subscription',
       success_url: `${process.env.FRONTEND_URL}/dashboard/profile?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.FRONTEND_URL}/dashboard/premium`,
@@ -38,7 +47,7 @@ export async function POST(request) {
     });
     return NextResponse.json({ success: true, url: session.url });
   } catch (error) {
-    console.error('Stripe Session Error:', error);
-    return NextResponse.json({ success: false, message: 'Could not create checkout session' }, { status: 500 });
+    console.error('Stripe Session Error:', error.message);
+    return NextResponse.json({ success: false, message: error.message || 'Could not create checkout session' }, { status: 500 });
   }
 }
