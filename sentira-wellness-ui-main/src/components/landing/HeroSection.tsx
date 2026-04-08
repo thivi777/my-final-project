@@ -22,6 +22,7 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./HeroSection.module.scss";
+import BrainAnimation from "./BrainAnimation";
 // ─── Scene data ───────────────────────────────────────────────────────────────
 const SCENES = [
   {
@@ -220,40 +221,9 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* ─── RIGHT — video scene card ─────────────────────── */}
+        {/* ─── RIGHT — animated brain ──────────────────────── */}
         <div className={`${styles.right} ${phase >= 4 ? styles.visible : ""}`}>
-          <div className={styles.videoCard}>
-
-            {/* Mini preview of the current scene */}
-            <div className={styles.cardPreview}>
-              <video
-                ref={cardVideoRef}
-                src={SCENES[activeScene].src}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-              />
-            </div>
-
-            <div className={styles.cardInfo}>
-              <div className={styles.cardTag}>{SCENES[activeScene].tag}</div>
-              <div className={styles.cardTitle}>{SCENES[activeScene].title}</div>
-
-              {/* Scene selector dots */}
-              <div className={styles.sceneDots}>
-                {SCENES.map((_, i) => (
-                  <button
-                    key={i}
-                    className={`${styles.sceneDot} ${activeScene === i ? styles.dotActive : ""}`}
-                    onClick={() => setActiveScene(i)}
-                    aria-label={`Switch to scene ${i + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
+          <BrainAnimation />
         </div>
       </div>
 

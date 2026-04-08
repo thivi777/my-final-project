@@ -1,68 +1,7 @@
-<<<<<<< HEAD
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
-
-=======
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-<<<<<<< HEAD
-@layer base {
-  :root {
-    --background: 30 20% 98%; // Warm Cream/Off-white
-    --foreground: 0 0% 16%; // Charcoal
-
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 16%;
-
-    --primary: 154 11% 40%; // Muted Sage
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 154 11% 20%; // Deep Sage/Charcoal
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 154 5% 60%;
-    --muted-foreground: 154 5% 30%;
-
-    --accent: 154 11% 95%; // Soft Sage Tint
-    --accent-foreground: 154 11% 30%;
-
-    --border: 154 5% 90%;
-    --input: 154 5% 90%;
-    --ring: 154 11% 40%;
-
-    --radius: 1.25rem; // Softer, more organic corners
-
-    --font-serif: 'Cormorant Garamond', serif;
-    --font-sans: 'DM Sans', sans-serif;
-  }
-
-  .dark {
-    --background: 0 0% 12%;
-    --foreground: 30 20% 98%;
-    --card: 0 0% 16%;
-    --card-foreground: 30 20% 98%;
-    --primary: 154 11% 60%;
-    --primary-foreground: 0 0% 12%;
-    --border: 0 0% 20%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-    font-family: var(--font-sans);
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-serif);
-    font-weight: 500;
-=======
 /* ── Google Fonts ─────────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
 
@@ -143,6 +82,7 @@
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
+    background-color: #121016; /* Clean deep backdrop for letterboxing on ultra-wide / TV screens */
   }
 
   body {
@@ -150,6 +90,11 @@
     background: hsl(var(--background));
     color: hsl(var(--foreground));
     transition: background-color 0.3s ease, color 0.3s ease;
+    max-width: 2000px;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.4); /* Elegant drop shadow for edges when on TVs */
+    overflow-x: hidden;
   }
 
   .font-display, .font-serif {
@@ -158,6 +103,5 @@
   
   .font-body, .font-sans {
     font-family: 'Plus Jakarta Sans', sans-serif;
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
   }
 }

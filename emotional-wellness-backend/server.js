@@ -23,11 +23,8 @@ const resourceRoutes = require('./routes/resourceRoutes');
 const emergencyContactRoutes = require('./routes/emergencyContactRoutes');
 const affirmationRoutes = require('./routes/affirmationRoutes');
 const analyticsRoutes = require('./routes/analyticsRoutes');
-<<<<<<< HEAD
-=======
 const subscriptionRoutes = require('./routes/subscriptionRoutes');
 const aiRoutes = require('./routes/aiRoutes');
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
 
 const app = express();
 
@@ -48,9 +45,6 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 app.use(cors());
-<<<<<<< HEAD
-app.use(express.json());
-=======
 app.use(express.json({
   verify: (req, res, buf) => {
     if (req.originalUrl.endsWith('/webhook')) {
@@ -59,7 +53,6 @@ app.use(express.json({
   }
 }));
 app.use(express.urlencoded({ extended: true }));
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
 app.use(cookieParser());
 app.use(passport.initialize());
 
@@ -70,20 +63,10 @@ app.use(helmet()); // Set security headers
 app.use((req, res, next) => {
   req.body = sanitize(req.body);
   req.params = sanitize(req.params);
-<<<<<<< HEAD
-  // req.query is sanitized by copy to avoid read-only property errors
-  const sanitizedQuery = sanitize(req.query);
-  for (let key in sanitizedQuery) {
-    if (sanitizedQuery.hasOwnProperty(key)) {
-      req.query[key] = sanitizedQuery[key];
-    }
-  }
-=======
   const sanitizedQuery = sanitize(req.query);
   Object.keys(sanitizedQuery).forEach(key => {
     req.query[key] = sanitizedQuery[key];
   });
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
   next();
 });
 
@@ -131,15 +114,12 @@ app.use('/api/affirmations', affirmationRoutes);
 // Analytics routes
 app.use('/api/analytics', analyticsRoutes);
 
-<<<<<<< HEAD
-=======
 // Subscription routes
 app.use('/api/subscriptions', subscriptionRoutes);
 
 // AI Guided routes
 app.use('/api/ai', aiRoutes);
 
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
 // Test root
 app.get('/', (req, res) => res.send('Server is running!'));
 

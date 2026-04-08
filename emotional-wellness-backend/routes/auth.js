@@ -11,11 +11,6 @@ const {
   login, 
   logout, 
   forgotPassword, 
-<<<<<<< HEAD
-  resetPassword 
-} = require('../controllers/authcontroller');  // make sure all functions are exported
-
-=======
   resetPassword,
   verifyEmail,
   resendVerificationEmail
@@ -23,7 +18,6 @@ const {
 
 const { protect } = require('../middleware/authMiddleware');
 
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
 // ----- Local authentication routes -----
 router.post(
   '/register', 
@@ -46,38 +40,20 @@ router.post(
 
 router.post('/logout', logout);
 
-<<<<<<< HEAD
-=======
+// ----- Password reset routes -----
+router.post('/forgot-password', forgotPassword);
+router.put('/reset-password/:token', resetPassword);
+
+// ----- Email verification routes -----
 router.post('/verify-email', protect, verifyEmail);
 router.post('/resend-verification', protect, resendVerificationEmail);
 
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
-// Use PUT for reset-password because it updates the password
-router.post(
-  '/forgot-password', 
-  validate([
-    check('email', 'Please include a valid email').isEmail()
-  ]),
-  forgotPassword
-);
-
-router.put(
-  '/reset-password/:token', 
-  validate([
-    check('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 })
-  ]),
-  resetPassword
-);
-
 // ----- Google OAuth routes -----
-
-// Step 1 → Redirect user to Google
 router.get(
   '/google',
   passport.authenticate('google', { scope: ['profile', 'email'] })
 );
 
-// Step 2 → Google callback
 router.get(
   '/google/callback',
   passport.authenticate('google', { session: false }),
@@ -87,14 +63,6 @@ router.get(
       process.env.JWT_SECRET,
       { expiresIn: '1h' }
     );
-<<<<<<< HEAD
-
-    res.json({
-      message: 'User Google login successful',
-      token,
-      user: req.user
-    });
-=======
     res.cookie('token', token, { 
       httpOnly: true, 
       secure: process.env.NODE_ENV === 'production',
@@ -161,7 +129,6 @@ router.post(
       const isNew = user.isNewUser ? 'true' : 'false';
       return res.redirect(`${frontendUrl}/auth/callback?token=${token}&name=${encodeURIComponent(user.name)}&isNew=${isNew}`);
     })(req, res, next);
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
   }
 );
 

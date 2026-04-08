@@ -62,6 +62,12 @@
       "namedRegex": "^/admin/admins(?:/)?$"
     },
     {
+      "page": "/admin/broadcast",
+      "regex": "^/admin/broadcast(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/broadcast(?:/)?$"
+    },
+    {
       "page": "/admin/login",
       "regex": "^/admin/login(?:/)?$",
       "routeKeys": {},
@@ -104,10 +110,52 @@
       "namedRegex": "^/app/profile(?:/)?$"
     },
     {
+      "page": "/auth/callback",
+      "regex": "^/auth/callback(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/auth/callback(?:/)?$"
+    },
+    {
       "page": "/dashboard",
       "regex": "^/dashboard(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/dashboard(?:/)?$"
+    },
+    {
+      "page": "/dashboard/activities",
+      "regex": "^/dashboard/activities(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/activities(?:/)?$"
+    },
+    {
+      "page": "/dashboard/goals",
+      "regex": "^/dashboard/goals(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/goals(?:/)?$"
+    },
+    {
+      "page": "/dashboard/insights",
+      "regex": "^/dashboard/insights(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/insights(?:/)?$"
+    },
+    {
+      "page": "/dashboard/mood",
+      "regex": "^/dashboard/mood(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/mood(?:/)?$"
+    },
+    {
+      "page": "/dashboard/premium",
+      "regex": "^/dashboard/premium(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/premium(?:/)?$"
+    },
+    {
+      "page": "/dashboard/profile",
+      "regex": "^/dashboard/profile(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/profile(?:/)?$"
     },
     {
       "page": "/forgot-password",

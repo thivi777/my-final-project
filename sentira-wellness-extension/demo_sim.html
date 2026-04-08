@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentira Wellness Demo</title>
+    <style>
+        /* Base styles for the "mock website" */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8fafc;
+            height: 2000px; /* Make it scrollable */
+        }
+        .hero {
+            height: 400px;
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80&w=2070');
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        .content {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            line-height: 1.6;
+            color: #334155;
+        }
+        
+        /* Extension Styles (Copied and modified) */
+        .sentira-floating-trigger {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #4c1d95, #6d28d9);
+            border-radius: 50%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .sentira-floating-trigger:hover {
+            transform: scale(1.15) rotate(5deg);
+        }
+        .sentira-logo-img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+        .sentira-logo-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            animation: pulse-ring 2s infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        
+        .sentira-wellness-card {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            width: 320px;
+            background: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            color: white;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6);
+            z-index: 10000;
+            display: none;
+            flex-direction: column;
+            animation: slide-up 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        @keyframes slide-up {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .panel-header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .panel-header h3 {
+            margin: 0;
+            color: #a78bfa;
+            font-size: 18px;
+        }
+        .close-btn {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            font-size: 28px;
+            cursor: pointer;
+            line-height: 1;
+        }
+        
+        .panel-body {
+            padding: 24px;
+            text-align: center;
+        }
+        .mood-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .mood-btn {
+            font-size: 36px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid transparent;
+            border-radius: 16px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .mood-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+            border-color: #a78bfa;
+        }
+        
+        #status-msg {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #5eead4;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <div>
+            <h1>Demo: Sentira Assistant</h1>
+            <p>Experience how the browser extension works on any website.</p>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2>About the Extension</h2>
+        <p>The Sentira Wellness extension is designed to be a discrete, helpful companion. It lives in the corner of your browser, ready whenever you need a quick mental health check-in.</p>
+        <p>This demo simulates the "Floating Assistant" and "Mood Logging" features that you've just loaded.</p>
+        
+        <h3>Prompt Simulator (for Demo)</h3>
+        <p>Click these buttons to see how the extension automatically reminds you to stay well throughout the day:</p>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button onclick="simulatePrompt('break')" style="padding: 10px; background: #6d28d9; color: white; border: none; border-radius: 8px; cursor: pointer;">Simulate 20m Break</button>
+            <button onclick="simulatePrompt('lunch')" style="padding: 10px; background: #6d28d9; color: white; border: none; border-radius: 8px; cursor: pointer;">Simulate Lunch Check</button>
+            <button onclick="simulatePrompt('evening')" style="padding: 10px; background: #6d28d9; color: white; border: none; border-radius: 8px; cursor: pointer;">Simulate Evening Check</button>
+        </div>
+
+        <h3>Mock User Profiles</h3>
+        <p>Select a profile to see how prompts change based on onboarding data:</p>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
+            <button onclick="setMockProfile('Alex', 'Student / Academic', 'Less stress', 'Keep breathing')" style="padding: 10px; background: #4c1d95; color: white; border: none; border-radius: 8px; cursor: pointer;">Alex (Student)</button>
+            <button onclick="setMockProfile('Sarah', 'Creative / Freelance', 'More energy', 'Stay inspired')" style="padding: 10px; background: #4c1d95; color: white; border: none; border-radius: 8px; cursor: pointer;">Sarah (Creative)</button>
+            <button onclick="setMockProfile('Mike', 'Professional / Corporate', 'Mental clarity', 'Focus on now')" style="padding: 10px; background: #4c1d95; color: white; border: none; border-radius: 8px; cursor: pointer;">Mike (Professional)</button>
+        </div>
+    </div>
+
+    <!-- Floating Trigger -->
+    <div class="sentira-floating-trigger" id="trigger">
+        <div class="sentira-logo-ring"></div>
+        <!-- Using the original JPG path we renamed -->
+        <img src="icons/icon128.png" alt="S" class="sentira-logo-img">
+    </div>
+
+    <!-- Wellness Panel -->
+    <div class="sentira-wellness-card" id="panel">
+        <div class="panel-header">
+            <h3>Sentira</h3>
+            <button class="close-btn" id="close">&times;</button>
+        </div>
+        <div class="panel-body">
+            <p>How are you feeling right now?</p>
+            <div class="mood-row">
+                <button class="mood-btn">😊</button>
+                <button class="mood-btn">😐</button>
+                <button class="mood-btn">😔</button>
+            </div>
+            <div id="status-msg"></div>
+        </div>
+    </div>
+
+    <script>
+        const trigger = document.getElementById('trigger');
+        const panel = document.getElementById('panel');
+        const close = document.getElementById('close');
+        const status = document.getElementById('status-msg');
+        const moodBtns = document.querySelectorAll('.mood-btn');
+        const panelPrompt = panel.querySelector('.panel-body p');
+
+        trigger.onclick = () => {
+            panelPrompt.innerText = "How are you feeling right now?";
+            panel.style.display = panel.style.display === 'flex' ? 'none' : 'flex';
+        };
+
+        let mockUser = { name: 'there', work: '', goal: '', anchor: '' };
+
+        function setMockProfile(name, work, goal, anchor) {
+            mockUser = { name, work, goal, anchor };
+            alert(`Mock Profile Set: ${name} (${work})`);
+        }
+
+        function simulatePrompt(type) {
+            let message = '';
+            const { name, work, goal, anchor } = mockUser;
+
+            if (type === 'break') {
+                if (work === 'Creative / Freelance') {
+                    message = `Hey ${name}, in the creative flow? Don't forget to blink and take a 2-min break! ${anchor}`;
+                } else if (work === 'Student / Academic') {
+                    message = `Studying hard, ${name}? Your brain needs a reset. Take a short walk. ${anchor}`;
+                } else {
+                    message = `${name}, how's work? Time for a quick stretch and some water. ${anchor}`;
+                }
+            } else if (type === 'lunch') {
+                message = `It's lunch time, ${name}! Fuel your body so you can keep crushing your goal of ${goal.toLowerCase()}.`;
+            } else if (type === 'evening') {
+                message = `Evening is here, ${name}. Time to wrap up and head home. Remember your intention: ${anchor}`;
+            } else {
+                message = type; // Direct message simulation
+            }
+
+            panelPrompt.innerText = message;
+            panel.style.display = 'flex';
+        }
+
+        close.onclick = () => {
+            panel.style.display = 'none';
+        };
+
+        moodBtns.forEach(btn => {
+            btn.onclick = () => {
+                status.innerText = "Mood Logged! Stay mindful. ✨";
+                setTimeout(() => {
+                    status.innerText = "";
+                    panel.style.display = "none";
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>

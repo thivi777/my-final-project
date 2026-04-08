@@ -9,11 +9,7 @@ const activitySchema = new mongoose.Schema({
   type: {
     type: String,
     required: [true, 'Please add an activity type'],
-<<<<<<< HEAD
-    enum: ['Meditation', 'Deep Breathing', 'Exercise', 'Yoga', 'Reading', 'Other'],
-=======
     enum: ['Meditation', 'Deep Breathing', 'Exercise', 'Yoga', 'Reading', 'Journaling', 'Other'],
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
     default: 'Other'
   },
   duration: {

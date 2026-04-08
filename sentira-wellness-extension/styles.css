@@ -1,123 +1,240 @@
-/* Sentira Wellness Extension Styles */
+/* ======================================================
+   Sentira Wellness Extension — Pixel-Perfect Premium UI
+   ====================================================== */
 
+/* ── Floating Trigger Button ── */
 .sentira-floating-trigger {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 56px;
-  height: 56px;
-  background: linear-gradient(135deg, #0d9488, #0891b2);
+  bottom: 28px;
+  right: 28px;
+  width: 62px;
+  height: 62px;
   border-radius: 50%;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.25), 0 8px 28px rgba(90, 30, 200, 0.45);
   cursor: pointer;
-  z-index: 999999;
+  z-index: 2147483647;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+  border: 2px solid rgba(255, 255, 255, 0.3);
 }
-
 .sentira-floating-trigger:hover {
-  transform: scale(1.1);
+  transform: scale(1.12);
+  box-shadow: 0 0 0 6px rgba(139, 92, 246, 0.3), 0 12px 35px rgba(90, 30, 200, 0.55);
 }
 
+/* Leaf icon inside floating button */
 .sentira-logo {
   width: 32px;
   height: 32px;
-  pointer-events: none;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
 }
 
+/* Pulsing ring around floating button */
 .sentira-logo-ring {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  inset: -4px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  animation: sentira-pulse 2s infinite;
+  border: 2px solid rgba(139, 92, 246, 0.5);
+  animation: s-pulse 2.2s ease-out infinite;
+}
+@keyframes s-pulse {
+  0%   { transform: scale(1);   opacity: 1; }
+  80%  { transform: scale(1.55); opacity: 0; }
+  100% { transform: scale(1.55); opacity: 0; }
 }
 
-@keyframes sentira-pulse {
-  0% { transform: scale(1); opacity: 0.8; }
-  100% { transform: scale(1.4); opacity: 0; }
-}
-
+/* ── Wellness Card (main panel) ── */
 .sentira-wellness-card {
   position: fixed;
-  bottom: 100px;
-  right: 30px;
-  width: 320px;
-  background: rgba(15, 23, 42, 0.95);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  color: white;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-  z-index: 999999;
-  font-family: 'Inter', -apple-system, sans-serif;
+  bottom: 106px;
+  right: 28px;
+  width: 360px;
+
+  /* Premium Gradient Background - Ensures visibility even on white pages */
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.25), rgba(79, 70, 229, 0.25)), rgba(20, 15, 30, 0.5);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 32px;
+  color: #ffffff;
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+
+  z-index: 2147483647;
+  font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   overflow: hidden;
-  animation: sentira-slide-up 0.3s ease-out;
+  animation: s-slide-up 0.45s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+@keyframes s-slide-up {
+  from { transform: translateY(40px) scale(0.9); opacity: 0; }
+  to   { transform: translateY(0)    scale(1);    opacity: 1; }
 }
 
-@keyframes sentira-slide-up {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
+/* ── Header ── */
 .sentira-panel-header {
-  padding: 16px;
-  background: rgba(255, 255, 255, 0.05);
+  padding: 30px 30px 10px;
+  position: relative;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.sentira-panel-header h3 {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 600;
-  color: #5eead4;
-}
-
+/* Close ×  */
 #sentira-close-panel {
-  background: none;
-  border: none;
-  color: #94a3b8;
-  font-size: 24px;
-  cursor: pointer;
-  line-height: 1;
-}
-
-.sentira-panel-body {
-  padding: 20px;
-  text-align: center;
-}
-
-.mood-selector {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 15px;
-}
-
-.mood-btn {
-  font-size: 32px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
   background: rgba(255, 255, 255, 0.1);
-  border: 1px solid transparent;
-  border-radius: 12px;
-  padding: 8px;
+  border: none;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
   cursor: pointer;
   transition: all 0.2s;
 }
-
-.mood-btn:hover {
+#sentira-close-panel:hover {
   background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-4px);
-  border-color: #5eead4;
+  transform: rotate(90deg);
 }
 
+/* Logo + brand name row */
+.sentira-header-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.sentira-header-logo {
+  width: 44px;
+  height: 44px;
+  background: white;
+  border-radius: 12px;
+  padding: 8px;
+  box-sizing: border-box;
+  object-fit: contain;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.sentira-brand {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.sentira-tagline {
+  margin: 2px 0 0;
+  font-size: 11px;
+  font-weight: 500;
+  opacity: 0.8;
+  letter-spacing: 0.8px;
+  color: #ffffff;
+}
+
+/* Big question text */
+.sentira-question {
+  margin: 10px 0 0;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #ffffff;
+  text-align: center;
+}
+
+/* ── Body ── */
+.sentira-panel-body {
+  padding: 10px 30px 24px;
+}
+
+/* Three mood columns */
+.mood-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 24px;
+}
+
+.mood-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Each emoji button */
+.mood-btn {
+  width: 100%;
+  aspect-ratio: 1;
+  border: none;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  outline: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+.mood-btn:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+.mood-btn:active {
+  transform: scale(0.95);
+}
+
+/* Caption under emoji */
+.mood-caption {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  letter-spacing: 0.3px;
+}
+
+/* Status feedback line */
 #sentira-status-msg {
-  margin-top: 15px;
-  font-size: 14px;
-  color: #94a3b8;
+  margin-top: 18px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  min-height: 18px;
+}
+
+/* ── Footer ── */
+.sentira-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+.footer-left {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.3px;
+}
+.footer-right {
+  display: flex;
+  gap: 8px;
+  opacity: 0.5;
+}
+.footer-right svg {
+  color: white;
 }

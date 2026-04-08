@@ -33,19 +33,6 @@ export default function UserManagementPage() {
     try {
       setLoading(true);
       const token = localStorage.getItem("adminToken");
-<<<<<<< HEAD
-      const res = await axios.get("http://localhost:5000/api/users", {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setUsers(res.data.data || []);
-    } catch (err) {
-      console.error("Failed to fetch users:", err);
-      toast({ 
-        title: "Connection Error", 
-        description: "Could not retrieve user list from server.", 
-        variant: "destructive" 
-      });
-=======
       if (!token || token === "undefined") {
         setLoading(false);
         return;
@@ -65,7 +52,6 @@ export default function UserManagementPage() {
           variant: "destructive" 
         });
       }
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
     } finally {
       setLoading(false);
     }
@@ -80,12 +66,8 @@ export default function UserManagementPage() {
     
     try {
       const token = localStorage.getItem("adminToken");
-<<<<<<< HEAD
-      await axios.delete(`http://localhost:5000/api/users/${id}`, {
-=======
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
       await axios.delete(`${apiUrl}/api/users/${id}`, {
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
         headers: { Authorization: `Bearer ${token}` }
       });
       toast({ title: "User Deleted", description: "The account has been removed from the system." });
@@ -158,7 +140,7 @@ export default function UserManagementPage() {
                 <TableRow key={user._id} className="border-slate-800 hover:bg-slate-800/30 transition-colors group">
                   <TableCell className="pl-6 font-medium">
                     <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center text-red-500 font-bold">
+                      <div className="w-9 h-9 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 font-bold border border-indigo-500/20">
                         {user.name?.charAt(0) || "U"}
                       </div>
                       <span className="text-white text-sm font-semibold">{user.name}</span>
@@ -186,7 +168,7 @@ export default function UserManagementPage() {
                       <Button 
                         size="icon" 
                         variant="ghost" 
-                        className="w-8 h-8 rounded-lg text-slate-500 hover:text-red-500 hover:bg-red-500/10 transition-colors"
+                        className="w-8 h-8 rounded-lg text-slate-500 hover:text-indigo-400 hover:bg-indigo-500/10 transition-colors"
                         onClick={() => handleDelete(user._id)}
                       >
                         <Trash2 size={16} />

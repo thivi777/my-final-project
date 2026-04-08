@@ -1,0 +1,144 @@
+// BrainAnimation.module.scss
+
+.brainWrap {
+  position: relative;
+  width: 460px;
+  height: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 1100px) {
+    width: 360px;
+    height: 360px;
+  }
+
+  @media (max-width: 900px) {
+    display: none; // hidden on mobile, hero is text-only
+  }
+}
+
+// ── Ambient glow rings ──────────────────────────────────────────
+@keyframes ringPulse {
+  0%, 100% { transform: scale(1);    opacity: 0.20; }
+  50%       { transform: scale(1.07); opacity: 0.35; }
+}
+
+.ring1, .ring2, .ring3 {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.ring1 {
+  width: 340px; height: 340px;
+  border: 1.5px solid rgba(155, 127, 212, 0.35);
+  background: radial-gradient(circle, rgba(91,61,138,0.12) 0%, transparent 70%);
+  animation: ringPulse 4s ease-in-out infinite;
+}
+.ring2 {
+  width: 400px; height: 400px;
+  border: 1px solid rgba(196,176,232,0.20);
+  animation: ringPulse 4s ease-in-out infinite 0.8s;
+}
+.ring3 {
+  width: 455px; height: 455px;
+  border: 1px solid rgba(212,160,192,0.14);
+  animation: ringPulse 4s ease-in-out infinite 1.6s;
+}
+
+// ── Neural glow sparkle particles ───────────────────────────────
+@keyframes sparkleDrift {
+  0%   { opacity: 0; transform: translate(0,0) scale(0.6); }
+  30%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(var(--tx,20px), var(--ty,-30px)) scale(1.4); }
+}
+
+.particles { position: absolute; inset: 0; pointer-events: none; }
+
+.particle {
+  position: absolute;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #c4b0e8;
+  box-shadow: 0 0 8px 3px rgba(155, 127, 212, 0.7);
+  // Spread around the ring at roughly equal angles
+  top:  calc(50% + sin(calc(var(--i) * 22.5deg)) * 145px - 3px);
+  left: calc(50% + cos(calc(var(--i) * 22.5deg)) * 145px - 3px);
+  --tx: calc(sin(calc(var(--i) * 37deg)) * 30px);
+  --ty: calc(cos(calc(var(--i) * 37deg)) * -35px);
+  animation: sparkleDrift 2.8s ease-out calc(var(--i) * 0.18s) infinite;
+}
+
+// ── Brain image ────────────────────────────────────────────────
+@keyframes brainFloat {
+  0%, 100% { transform: translateY(0) scale(1);    }
+  50%       { transform: translateY(-14px) scale(1.015); }
+}
+
+@keyframes brainGlow {
+  0%, 100% {
+    filter:
+      drop-shadow(0 0 18px rgba(155, 127, 212, 0.65))
+      drop-shadow(0 0 40px rgba(91, 61, 138, 0.45))
+      drop-shadow(0 0 70px rgba(91, 61, 138, 0.25));
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 28px rgba(196, 176, 232, 0.85))
+      drop-shadow(0 0 60px rgba(155, 127, 212, 0.65))
+      drop-shadow(0 0 100px rgba(91, 61, 138, 0.40));
+  }
+}
+
+.imageWrap {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  animation: brainFloat 6s ease-in-out infinite;
+}
+
+.brainImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: brainGlow 4s ease-in-out infinite;
+  border-radius: 20px;
+}
+
+// ── Floating stat chips ─────────────────────────────────────────
+@keyframes chipFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-7px); }
+}
+
+.chip {
+  position: absolute;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(251, 248, 255, 0.88);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(155, 127, 212, 0.28);
+  border-radius: 100px;
+  padding: 0.48rem 1rem;
+  box-shadow:
+    0 6px 24px rgba(91, 61, 138, 0.18),
+    0 1px 0 rgba(255,255,255,0.6) inset;
+  white-space: nowrap;
+  animation: chipFloat 4s ease-in-out infinite;
+}
+
+.chip1 { top: 12%;   left: -8%;    animation-delay: 0s;   }
+.chip2 { bottom: 18%; right: -6%;  animation-delay: 1s;   }
+.chip3 { top: 56%;   left: -10%;   animation-delay: 2s;   }
+
+.chipIcon { font-size: 0.9rem; }
+.chipText {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #5b3d8a;
+}

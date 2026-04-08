@@ -26,20 +26,18 @@ router.post('/logout', logout);
 router.post('/forgot-password', forgotPassword);
 router.put('/reset-password/:token', resetPassword);
 
-<<<<<<< HEAD
-=======
 // ----- Google OAuth routes -----
 
 // Step 1 → Redirect user to Google
 router.get(
   '/google',
-  passport.authenticate('google-admin', { scope: ['profile', 'email'] })
+  passport.authenticate('admin-google', { scope: ['profile', 'email'] })
 );
 
 // Step 2 → Google callback
 router.get(
   '/google/callback',
-  passport.authenticate('google-admin', { session: false }),
+  passport.authenticate('admin-google', { session: false }),
   (req, res) => {
     const token = jwt.sign(
       { id: req.user._id, role: req.user.role },
@@ -57,7 +55,6 @@ router.get(
   }
 );
 
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
 // ----- Admin CRUD routes (Protected) -----
 router.use(protect);
 router.use(authorize('admin'));
@@ -71,34 +68,4 @@ router.route('/admins/:id')
   .delete(deleteAdmin);
 
 
-<<<<<<< HEAD
-// ----- Google OAuth routes -----
-
-// Step 1 → Redirect user to Google
-router.get(
-  '/google',
-  passport.authenticate('google', { scope: ['profile', 'email'] })
-);
-
-// Step 2 → Google callback
-router.get(
-  '/google/callback',
-  passport.authenticate('google', { session: false }),
-  (req, res) => {
-    const token = jwt.sign(
-      { id: req.user._id, role: req.user.role },
-      process.env.JWT_SECRET,
-      { expiresIn: '1h' }
-    );
-
-    res.json({
-      message: 'User Google login successful',
-      token,
-      user: req.user
-    });
-  }
-);
-
-=======
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
 module.exports = router;

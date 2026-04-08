@@ -1,61 +1,4 @@
 // src/styles/abstracts/_variables.scss
-<<<<<<< HEAD
-
-// ── 🎨 Brand Palette ──────────────────────────────────────
-
-// Teal Base (Sage/Deep Forest)
-$teal-dark:    #031e19;
-$teal-primary: #154112; 
-$teal-medium:  #2d4f49;
-$teal-mid:     #1a3c37;
-$teal-soft:    #e0f4f1;
-$teal-deep:    #021411;
-
-// Gold & Warm Tones
-$gold:         #c4895a;
-$gold-light:   #f0ebe0;
-$gold-deep:    #9b6840;
-
-// Neutrals
-$white:        #ffffff;
-$off-white:    #faf9f6;
-$charcoal:     #222222;
-$slate-300:    #cbd5e1;
-$slate-400:    #94a3b8;
-$slate-500:    #64748b;
-
-// ── 🖋️ Typography ────────────────────────────────────────
-
-$font-serif:   'Cormorant Garamond', serif;
-$font-display: 'Playfair Display', serif;
-$font-sans:    'DM Sans', sans-serif;
-$font-body:    'Inter', sans-serif;
-$font-ui:      'DM Sans', sans-serif;
-
-// ── 📏 Layout & Spacing ──────────────────────────────────
-
-$container:     1280px;
-$container-pad: 2rem;
-$radius-sm:     0.5rem;
-$radius-md:     1rem;
-$radius-lg:     1.25rem;
-$radius-xl:     2.5rem;
-
-$section-pad:   5.5rem;
-$section-pad-sm: 3.5rem;
-
-$z-nav:         1000;
-$z-overlay:     1001;
-$z-dropdown:    1002;
-$z-modal:       2000;
-
-$shadow-gold:   0 4px 20px rgba($gold, 0.2);
-$shadow-soft:   0 10px 30px rgba(0,0,0,0.02);
-
-// ── ✨ Transitions ───────────────────────────────────────
-
-$transition:    all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-=======
 // ══════════════════════════════════════════════════════════
 //  SENTIRA WELLNESS — Modern Lavender & Gold Palette
 // ══════════════════════════════════════════════════════════
@@ -141,6 +84,5 @@ $shadow-soft:    0 10px 40px rgba(0,0,0,0.06);
 
 // ── ✨ Transitions ───────────────────────────────────────
 $transition:      all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
 $transition-fast: all 0.2s ease;
 $transition-slow: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);

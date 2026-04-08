@@ -16,22 +16,12 @@ exports.register = async (req, res, next) => {
     }
 
     const hashedPassword = password ? await bcrypt.hash(password, 10) : undefined;
-<<<<<<< HEAD
-=======
-    
     const verificationCode = crypto.randomInt(100000, 999999).toString();
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
 
     const user = new User({
       name,
       email,
       password: hashedPassword,
-<<<<<<< HEAD
-      role: 'user'
-    });
-    
-    await user.save();
-=======
       role: 'user',
       isVerified: false,
       verificationCode
@@ -47,7 +37,6 @@ exports.register = async (req, res, next) => {
       // We can still proceed even if email fails, but maybe log it.
     }
 
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
     const token = createToken(user);
 
     return sendResponse(res, 201, true, 'User registered successfully', {
@@ -159,9 +148,6 @@ exports.googleCallback = (req, res) => {
     httpOnly: true, 
     secure: process.env.NODE_ENV === 'production' 
   });
-<<<<<<< HEAD
-  return sendResponse(res, 200, true, 'Google login successful', { token });
-=======
   
   // Redirect to frontend callback route with token and user info
   const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
@@ -219,5 +205,4 @@ exports.resendVerificationEmail = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
 };

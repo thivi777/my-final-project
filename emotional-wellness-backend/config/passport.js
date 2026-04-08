@@ -1,12 +1,23 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-<<<<<<< HEAD
-=======
 const FacebookStrategy = require("passport-facebook").Strategy;
 const AppleStrategy = require("passport-apple");
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
+
 const User = require("../models/User");
 const Admin = require("../models/Admin");
+ 
+// List of emails or names that should be granted admin access
+const ADMIN_WHITELIST = [
+  "angelthivi9@gmail.com", 
+  "thiviysa sathananthan"
+];
+
+const isWhitelisted = (profile) => {
+  const email = profile.emails && profile.emails[0] ? profile.emails[0].value.toLowerCase() : null;
+  const name = profile.displayName ? profile.displayName.toLowerCase() : null;
+  
+  return (email && ADMIN_WHITELIST.includes(email)) || (name && ADMIN_WHITELIST.includes(name));
+};
 
 // -------- User Google login --------
 passport.use(
@@ -14,27 +25,10 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: process.env.GOOGLE_CALLBACK_URL,
+      callbackURL: process.env.GOOGLE_CALLBACK_URL || "/api/auth/google/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-<<<<<<< HEAD
-        // Check by googleId OR email
-        let user = await User.findOne({
-          $or: [
-            { googleId: profile.id },
-            { email: profile.emails[0].value }
-          ]
-        });
-
-        if (!user) {
-          // If user does not exist, create new
-          user = await User.create({
-            googleId: profile.id,
-            name: profile.displayName,
-            email: profile.emails[0].value,
-            role: "user"
-=======
         const email = profile.emails && profile.emails[0] ? profile.emails[0].value : null;
         let user = await User.findOne({
           $or: [
@@ -51,19 +45,22 @@ passport.use(
             googleId: profile.id,
             name: profile.displayName,
             email: email || `google_${profile.id}@noemail.com`,
-            role: ["user"]
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
+            role: isWhitelisted(profile) ? ["user", "admin"] : ["user"]
           });
         } else if (!user.googleId) {
           // If user exists but no googleId, attach it
           user.googleId = profile.id;
+          if (isWhitelisted(profile) && !user.role.includes("admin")) {
+            user.role.push("admin");
+          }
+          await user.save();
+        } else if (isWhitelisted(profile) && !user.role.includes("admin")) {
+          // If user exists and has googleId, but not admin role
+          user.role.push("admin");
           await user.save();
         }
-
-<<<<<<< HEAD
-=======
+        
         user.isNewUser = isNewUser;
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
         done(null, user);
       } catch (error) {
         done(error, null);
@@ -74,31 +71,15 @@ passport.use(
 
 // -------- Admin Google login --------
 passport.use(
-  "google-admin",
+  "admin-google",
   new GoogleStrategy(
     {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: process.env.GOOGLE_ADMIN_CALLBACK_URL,
+      clientID: process.env.ADMIN_GOOGLE_CLIENT_ID || process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.ADMIN_GOOGLE_CLIENT_SECRET || process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: process.env.ADMIN_GOOGLE_CALLBACK_URL || "/api/admin/auth/google/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-<<<<<<< HEAD
-        // Check by googleId OR email
-        let admin = await Admin.findOne({
-          $or: [
-            { googleId: profile.id },
-            { email: profile.emails[0].value }
-          ]
-        });
-
-        if (!admin) {
-          // If admin does not exist, create new
-          admin = await Admin.create({
-            googleId: profile.id,
-            name: profile.displayName,
-            email: profile.emails[0].value,
-=======
         const email = profile.emails && profile.emails[0] ? profile.emails[0].value : null;
         let admin = await Admin.findOne({
           $or: [
@@ -115,7 +96,6 @@ passport.use(
             googleId: profile.id,
             name: profile.displayName,
             email: email || `google_admin_${profile.id}@noemail.com`,
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
             role: "admin"
           });
         } else if (!admin.googleId) {
@@ -123,11 +103,8 @@ passport.use(
           admin.googleId = profile.id;
           await admin.save();
         }
-
-<<<<<<< HEAD
-=======
-        admin.isNewUser = isNewAdmin;
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
+        
+        admin.isNewAdmin = isNewAdmin;
         done(null, admin);
       } catch (error) {
         done(error, null);
@@ -135,9 +112,6 @@ passport.use(
     }
   )
 );
-
-<<<<<<< HEAD
-=======
 // -------- User Facebook login --------
 passport.use(
   new FacebookStrategy(
@@ -228,5 +202,4 @@ passport.use(
   )
 );
 
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
 module.exports = passport;

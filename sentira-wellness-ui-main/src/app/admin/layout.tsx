@@ -41,25 +41,21 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   const handleSignOut = () => {
     localStorage.removeItem("adminToken");
-<<<<<<< HEAD
-    window.location.href = "/admin/login";
-=======
     window.location.href = "/";
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
   };
 
   return (
-    <div className="min-h-screen flex bg-slate-950 text-slate-200">
+    <div className="min-h-screen flex bg-[#020617] text-slate-200">
       {/* Admin Sidebar */}
-      <aside className="w-72 bg-slate-900 border-r border-slate-800 flex flex-col shadow-2xl">
-        <div className="p-8 border-b border-slate-800">
+      <aside className="w-72 bg-[#020617] border-r border-[#1e293b]/50 flex flex-col shadow-2xl relative z-20">
+        <div className="p-8 border-b border-[#1e293b]/50">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center shadow-lg shadow-red-600/20">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-600/20">
               <ShieldAlert className="w-6 h-6 text-white" />
             </div>
             <div>
               <h1 className="font-display text-lg font-bold text-white tracking-tight">Admin Console</h1>
-              <p className="text-[10px] text-red-500 font-bold uppercase tracking-widest">Sentira Core</p>
+              <p className="text-[10px] text-indigo-400 font-bold uppercase tracking-widest">Sentira Core</p>
             </div>
           </div>
         </div>
@@ -74,24 +70,24 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 className={cn(
                   "flex items-center justify-between px-4 py-3.5 rounded-xl font-body text-sm font-semibold transition-all group",
                   isActive
-                    ? "bg-red-600 text-white shadow-lg shadow-red-600/20"
-                    : "text-slate-400 hover:bg-slate-800 hover:text-white"
+                    ? "bg-gradient-to-r from-indigo-600/20 to-violet-500/10 text-white border border-indigo-500/30 shadow-lg shadow-indigo-600/5"
+                    : "text-slate-400 hover:bg-slate-800/50 hover:text-white"
                 )}
               >
                 <div className="flex items-center gap-3">
-                  <item.icon size={20} className={cn(isActive ? "text-white" : "text-slate-500 group-hover:text-white")} />
+                  <item.icon size={20} className={cn(isActive ? "text-indigo-400" : "text-slate-500 group-hover:text-indigo-400")} />
                   {item.label}
                 </div>
-                {isActive && <ChevronRight size={16} className="text-white/50" />}
+                {isActive && <ChevronRight size={16} className="text-indigo-400/50" />}
               </Link>
             );
           })}
         </nav>
 
-        <div className="p-6 border-t border-slate-800">
+        <div className="p-6 border-t border-[#1e293b]/50">
           <button
             onClick={handleSignOut}
-            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl font-body text-sm font-bold text-slate-500 hover:bg-red-600/10 hover:text-red-500 transition-all"
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl font-body text-sm font-bold text-slate-500 hover:bg-indigo-600/10 hover:text-indigo-400 transition-all"
           >
             <LogOut size={20} />
             Exit System
@@ -100,8 +96,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 flex flex-col min-h-screen">
-        <header className="h-20 bg-slate-900/50 backdrop-blur-xl border-b border-slate-800 flex items-center justify-between px-10">
+      <main className="flex-1 flex flex-col min-h-screen relative overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-indigo-600/5 blur-[120px] rounded-full pointer-events-none -mr-40 -mt-40" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-violet-600/5 blur-[120px] rounded-full pointer-events-none -ml-40 -mb-40" />
+        
+        <header className="h-20 bg-[#020617]/50 backdrop-blur-xl border-b border-[#1e293b]/50 flex items-center justify-between px-10 relative z-20">
           <div className="flex items-center gap-2">
             <span className="text-slate-500 font-medium tracking-wide text-sm uppercase">Admin Room</span>
             <ChevronRight size={14} className="text-slate-700" />
@@ -112,18 +112,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <div className="flex items-center gap-4">
             <div className="flex flex-col items-end mr-2">
               <span className="text-xs font-bold text-white">System Admin</span>
-              <span className="text-[10px] text-slate-500 font-medium">Root Access</span>
+              <span className="text-[10px] text-indigo-400 font-medium">Root Access</span>
             </div>
-            <div className="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-red-500 font-bold shadow-inner">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600 to-violet-500 flex items-center justify-center text-white font-bold shadow-lg shadow-indigo-600/10">
               SA
             </div>
           </div>
         </header>
 
-        <div className="flex-1 p-10 overflow-auto overflow-x-hidden relative">
-          {/* Subtle background glows */}
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-red-600/5 blur-[150px] rounded-full pointer-events-none" />
-          <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="flex-1 p-10 overflow-auto overflow-x-hidden relative z-10">
+          <div className="max-w-7xl mx-auto">
             {children}
           </div>
         </div>

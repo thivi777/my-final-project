@@ -1,15 +1,4 @@
 "use client";
-<<<<<<< HEAD
-import Navbar from "@/components/Navbar";
-import HeroSection from "@/components/HeroSection";
-import FeaturesSection from "@/components/FeaturesSection";
-import HowItWorksSection from "@/components/HowItWorksSection";
-import ActivitiesSection from "@/components/ActivitiesSection";
-import DashboardPreview from "@/components/DashboardPreview";
-import Footer from "@/components/Footer";
-
-export default function HomePage() {
-=======
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
@@ -30,7 +19,6 @@ export default function HomePage() {
     // Optional: Pre-check if token is valid without redirecting
   }, []);
 
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -39,10 +27,7 @@ export default function HomePage() {
       <HowItWorksSection />
       <ActivitiesSection />
       <DashboardPreview />
-<<<<<<< HEAD
-=======
       <PricingSection />
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
       <Footer />
     </div>
   );

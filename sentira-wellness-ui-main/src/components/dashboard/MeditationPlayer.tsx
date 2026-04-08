@@ -9,12 +9,13 @@ import { Slider } from "@/components/ui/slider";
 interface MeditationPlayerProps {
   onClose: () => void;
   title: string;
+  label?: string;
   audioUrl?: string;
   imageUrl?: string;
   videoUrl?: string;
 }
 
-export default function MeditationPlayer({ onClose, title, audioUrl, imageUrl, videoUrl }: MeditationPlayerProps) {
+export default function MeditationPlayer({ onClose, title, label = "Guided Meditation", audioUrl, imageUrl, videoUrl }: MeditationPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -109,7 +110,7 @@ export default function MeditationPlayer({ onClose, title, audioUrl, imageUrl, v
         <div className="space-y-2">
           <div className="flex items-center justify-center gap-2 text-primary font-medium text-xs tracking-[0.2em] uppercase">
             <Sparkles size={14} />
-            <span>Guided Meditation</span>
+            <span>{label}</span>
           </div>
           <h2 className="text-3xl font-display font-bold text-white tracking-tight">{title}</h2>
           <p className="text-slate-400 font-body text-sm italic">Find your inner stillness.</p>

@@ -22,7 +22,7 @@ interface NavLinkItem { label: string; href: string; }
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const LOGO = "/images/sentira-logo-v2.png";
+  const LOGO = "/images/logo-premium.png";
 
   const links: NavLinkItem[] = [
     { label: 'Home',     href: '#home'     },

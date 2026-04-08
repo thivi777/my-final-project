@@ -102,6 +102,36 @@ const activities = [
     premium: true,
     audioUrl: "https://assets.mixkit.co/music/preview/mixkit-night-forest-651.mp3"
   },
+  {
+    icon: Music,
+    title: "Relaxation Music",
+    duration: "15 min",
+    category: "meditation",
+    label: "Relaxation Music",
+    description: "Soothe your mind with calming ambient sounds designed for deep relaxation.",
+    image: "/images/activity-meditation.jpg",
+    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-delicate-piano-49.mp3"
+  },
+  {
+    icon: Flower2,
+    title: "Loving Music",
+    duration: "10 min",
+    category: "meditation",
+    label: "Loving Music",
+    description: "Connect with feelings of love and compassion through gentle melodic tones.",
+    image: "/images/activity-meditation.jpg",
+    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-sun-and-ocean-585.mp3"
+  },
+  {
+    icon: Brain,
+    title: "Meditation Guide",
+    duration: "12 min",
+    category: "meditation",
+    label: "Guided Meditation",
+    description: "A structured musical journey to help you maintain focus during your meditation.",
+    image: "/images/activity-meditation.jpg",
+    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-meditation-vibe-149.mp3"
+  },
 ];
 
 const quickActions = [
@@ -180,6 +210,7 @@ export default function ActivitiesPage() {
               setActiveActivity(null);
             }} 
             title={activeActivity.title || activeActivity.label}
+            label={activeActivity.label}
             audioUrl={activeActivity.audioUrl}
             videoUrl={activeActivity.videoUrl}
           />

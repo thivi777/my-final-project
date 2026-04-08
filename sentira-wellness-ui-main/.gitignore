@@ -10,12 +10,9 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
-<<<<<<< HEAD
-=======
 .next
 out
 build
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
 *.local
 
 # Editor directories and files

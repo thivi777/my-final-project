@@ -59,10 +59,10 @@ export default function DashboardSidebar({ isAdmin = false }: DashboardSidebarPr
   return (
     <aside className={styles.sidebar}>
       <div className={styles.top}>
-        <div className={styles.logo}>
-          <div className={styles.logoIcon}>S</div>
+        <Link href="/" className={styles.logo}>
+          <img src="/images/logo-premium.png" alt="Sentira" className={styles.logoImg} />
           <span>Sentira</span>
-        </div>
+        </Link>
       </div>
 
       <nav className={styles.nav}>

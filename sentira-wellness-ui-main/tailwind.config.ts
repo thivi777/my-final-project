@@ -15,17 +15,6 @@ export default {
   	extend: {
   		fontFamily: {
   			display: [
-<<<<<<< HEAD
-  				'"Playfair Display"',
-  				'serif'
-  			],
-  			body: [
-  				'Inter',
-  				'sans-serif'
-  			],
-  			sans: [
-  				'Work Sans',
-=======
   				'Outfit',
   				'sans-serif'
   			],
@@ -35,7 +24,6 @@ export default {
   			],
   			sans: [
   				'"Plus Jakarta Sans"',
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
   				'ui-sans-serif',
   				'system-ui',
   				'-apple-system',

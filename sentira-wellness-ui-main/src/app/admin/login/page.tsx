@@ -21,12 +21,8 @@ export default function AdminLoginPage() {
     e.preventDefault();
     setLoading(true);
     try {
-<<<<<<< HEAD
-      const res = await axios.post("http://localhost:5000/api/admin/auth/login", {
-=======
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
       const res = await axios.post(`${apiUrl}/api/admin/auth/login`, {
->>>>>>> 1ac43f5 (Initial commit - Fresh and Clean)
         email,
         password,
       });
@@ -54,9 +50,9 @@ export default function AdminLoginPage() {
         <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-500/10 blur-[120px] rounded-full" />
       </div>
 
-      <Card className="w-full max-w-md border-slate-800 bg-slate-900/50 backdrop-blur-xl relative z-10">
+      <Card className="w-full max-w-md border-slate-800 bg-slate-900/50 backdrop-blur-xl relative z-10 shadow-2xl shadow-indigo-900/20">
         <CardHeader className="text-center space-y-2">
-          <div className="mx-auto w-16 h-16 rounded-2xl bg-gradient-to-br from-red-500 to-orange-400 flex items-center justify-center shadow-2xl shadow-red-500/20 mb-4">
+          <div className="mx-auto w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-600 to-violet-500 flex items-center justify-center shadow-2xl shadow-indigo-500/20 mb-4">
             <ShieldAlert className="w-9 h-9 text-white" />
           </div>
           <CardTitle className="text-2xl font-display font-bold text-white tracking-tight">
@@ -75,7 +71,7 @@ export default function AdminLoginPage() {
                 <Input 
                   type="email" 
                   placeholder="admin@sentira.com"
-                  className="bg-slate-950 border-slate-800 text-white pl-10 h-12 rounded-xl focus:ring-red-500/20"
+                  className="bg-slate-950 border-slate-800 text-white pl-10 h-12 rounded-xl focus:ring-indigo-500/20"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -89,7 +85,7 @@ export default function AdminLoginPage() {
                 <Input 
                   type="password" 
                   placeholder="••••••••"
-                  className="bg-slate-950 border-slate-800 text-white pl-10 h-12 rounded-xl focus:ring-red-500/20"
+                  className="bg-slate-950 border-slate-800 text-white pl-10 h-12 rounded-xl focus:ring-indigo-500/20"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -98,7 +94,7 @@ export default function AdminLoginPage() {
             </div>
             <Button 
               type="submit" 
-              className="w-full h-12 rounded-xl bg-gradient-to-r from-red-600 to-orange-500 hover:from-red-700 hover:to-orange-600 text-white font-bold shadow-lg shadow-red-600/20 transition-all active:scale-[0.98]"
+              className="w-full h-12 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-500 hover:from-indigo-700 hover:to-violet-600 text-white font-bold shadow-lg shadow-indigo-600/20 transition-all active:scale-[0.98]"
               disabled={loading}
             >
               {loading ? "Authenticating..." : "Authorize Access"}
