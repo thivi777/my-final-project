@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd sentira-wellness-ui-main && npm install && npm run build",
+  "outputDirectory": "sentira-wellness-ui-main/.next",
+  "framework": "nextjs",
+  "regions": ["sin1"]
+}
