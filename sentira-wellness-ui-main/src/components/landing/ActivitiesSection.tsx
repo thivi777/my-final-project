@@ -13,7 +13,7 @@ const activities = [
     icon: Brain,
     title: "Meditation",
     subtitle: "Find inner peace",
-    image: "/images/activity-meditation.jpg",
+    image: "/images/hero-1.jpg",
   },
   {
     icon: BookOpen,

@@ -1,12 +1,8 @@
 {
-  "/api/users/profile/route": "app/api/users/profile/route.js",
-  "/api/analytics/summary/route": "app/api/analytics/summary/route.js",
-  "/api/mood-logs/route": "app/api/mood-logs/route.js",
+  "/api/auth/google/route": "app/api/auth/google/route.js",
   "/login/page": "app/login/page.js",
   "/forgot-password/page": "app/forgot-password/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/dashboard/mood/page": "app/dashboard/mood/page.js",
-  "/dashboard/activities/page": "app/dashboard/activities/page.js",
   "/dashboard/insights/page": "app/dashboard/insights/page.js",
+  "/dashboard/activities/page": "app/dashboard/activities/page.js",
   "/dashboard/profile/page": "app/dashboard/profile/page.js"
 }

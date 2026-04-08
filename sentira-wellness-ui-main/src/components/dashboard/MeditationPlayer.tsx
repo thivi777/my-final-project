@@ -22,7 +22,7 @@ export default function MeditationPlayer({ onClose, title, label = "Guided Medit
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // Fallback audio if none provided (relaxing default track)
-  const source = audioUrl || "https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3";
+  const source = audioUrl || "https://actions.google.com/sounds/v1/water/waves_crashing_on_rock_beach.ogg";
 
   useEffect(() => {
     if (audioRef.current) {
