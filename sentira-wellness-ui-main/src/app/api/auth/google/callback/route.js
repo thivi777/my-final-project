@@ -24,8 +24,11 @@ export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const code = searchParams.get('code');
 
+  const origin = new URL(request.url).origin;
+  const redirect_uri = process.env.GOOGLE_CALLBACK_URL || `${origin}/api/auth/google/callback`;
+
   if (!code) {
-    return NextResponse.redirect(`${process.env.FRONTEND_URL}/login?error=google_auth_failed`);
+    return NextResponse.redirect(`${origin}/login?error=google_auth_failed`);
   }
 
   try {
@@ -37,7 +40,7 @@ export async function GET(request) {
         code,
         client_id: process.env.GOOGLE_CLIENT_ID,
         client_secret: process.env.GOOGLE_CLIENT_SECRET,
-        redirect_uri: process.env.GOOGLE_CALLBACK_URL,
+        redirect_uri,
         grant_type: 'authorization_code',
       }),
     });
@@ -74,12 +77,11 @@ export async function GET(request) {
     }
 
     const token = createToken(user);
-    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
     return NextResponse.redirect(
-      `${frontendUrl}/auth/callback?token=${token}&name=${encodeURIComponent(user.name)}&isNew=${isNewUser}`
+      `${origin}/auth/callback?token=${token}&name=${encodeURIComponent(user.name)}&isNew=${isNewUser}`
     );
   } catch (err) {
     console.error('Google callback error:', err);
-    return NextResponse.redirect(`${process.env.FRONTEND_URL}/login?error=google_auth_failed`);
+    return NextResponse.redirect(`${origin}/login?error=google_auth_failed`);
   }
 }
