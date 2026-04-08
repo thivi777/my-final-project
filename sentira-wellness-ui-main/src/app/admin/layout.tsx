@@ -9,7 +9,9 @@ import {
   LayoutDashboard,
   LogOut,
   ChevronRight,
-  ShieldAlert
+  ShieldAlert,
+  Activity,
+  Wallet
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -17,6 +19,8 @@ const adminNav = [
   { icon: LayoutDashboard, label: "Overview", href: "/admin" },
   { icon: Users, label: "User Management", href: "/admin/users" },
   { icon: ShieldCheck, label: "Admin Management", href: "/admin/admins" },
+  { icon: Activity, label: "System Activity", href: "/admin/activity-logs" },
+  { icon: Wallet, label: "Payment Statements", href: "/admin/payment-statements" },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
