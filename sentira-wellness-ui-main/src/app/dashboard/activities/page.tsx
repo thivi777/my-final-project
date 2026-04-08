@@ -224,34 +224,59 @@ export default function ActivitiesPage() {
   return (
     <div className="space-y-6 max-w-5xl mx-auto">
       <AnimatePresence>
-        {activeActivity?.title === "4-7-8 Relaxation" && (
-          <BreathingExercise onClose={() => setActiveActivity(null)} type="4-7-8" />
+        {/* Activity Players & Modals */}
+        {activeActivity && (
+          <motion.div
+            key="activity-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100]"
+          >
+            {/* Catch-all Rendering Logic */}
+            {(() => {
+              const title = activeActivity.title || activeActivity.label;
+              const category = activeActivity.category;
+
+              // 1. Specific Title Handlers (Highest Priority)
+              if (title === "4-7-8 Relaxation" || title === "Quick Breathe") {
+                return <BreathingExercise onClose={() => setActiveActivity(null)} type="4-7-8" />;
+              }
+              if (title === "Box Breathing") {
+                return <BreathingExercise onClose={() => setActiveActivity(null)} type="box" />;
+              }
+              if (title === "Mindful Pause") {
+                return <BreathingExercise onClose={() => setActiveActivity(null)} type="box" />; // Reuse box for now
+              }
+              if (title === "Sleep Prep") {
+                return <SleepPrep onClose={() => setActiveActivity(null)} />;
+              }
+
+              // 2. Category Handlers
+              if (category === "meditation") {
+                return (
+                  <MeditationPlayer 
+                    key={title}
+                    onClose={() => {
+                      handleMeditationComplete(title);
+                      setActiveActivity(null);
+                    }} 
+                    title={title}
+                    label={activeActivity.label}
+                    audioUrl={activeActivity.audioUrl}
+                    videoUrl={activeActivity.videoUrl}
+                  />
+                );
+              }
+              if (category === "journaling") {
+                return <CBTJournal onClose={() => setActiveActivity(null)} />;
+              }
+
+              return null;
+            })()}
+          </motion.div>
         )}
-        {activeActivity?.title === "Box Breathing" && (
-          <BreathingExercise onClose={() => setActiveActivity(null)} type="box" />
-        )}
-        {activeActivity?.title === "Emotion Reflection" && (
-          <CBTJournal onClose={() => setActiveActivity(null)} />
-        )}
-        {activeActivity?.category === "meditation" && (
-          <MeditationPlayer 
-            key={activeActivity.title || activeActivity.label}
-            onClose={() => {
-              handleMeditationComplete(activeActivity.title || activeActivity.label);
-              setActiveActivity(null);
-            }} 
-            title={activeActivity.title || activeActivity.label}
-            label={activeActivity.label}
-            audioUrl={activeActivity.audioUrl}
-            videoUrl={activeActivity.videoUrl}
-          />
-        )}
-        {activeActivity?.title === "Sleep Prep" && (
-          <SleepPrep onClose={() => setActiveActivity(null)} />
-        )}
-        {activeActivity?.label === "Quick Breathe" && (
-          <BreathingExercise onClose={() => setActiveActivity(null)} type="4-7-8" />
-        )}
+        
         {showPremiumModal && (
           <PremiumModal onClose={() => setShowPremiumModal(false)} />
         )}
