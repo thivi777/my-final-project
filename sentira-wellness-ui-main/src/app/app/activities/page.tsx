@@ -8,9 +8,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 
-import breathingImg from "@/assets/activity-breathing.jpg";
-import meditationImg from "@/assets/activity-meditation.jpg";
-import journalingImg from "@/assets/activity-journaling.jpg";
+const breathingImg = "/images/activity-breathing.jpg";
+const meditationImg = "/images/activity-meditation.jpg";
+const journalingImg = "/images/activity-journaling.jpg";
 
 const categories = [
   { key: "all", label: "All" },
