@@ -5,7 +5,8 @@
   "scripts": {
     "dev:ui": "cd sentira-wellness-ui-main && npm run dev",
     "dev:api": "cd emotional-wellness-backend && npm run dev",
-    "dev": "concurrently \"npm run dev:api\" \"npm run dev:ui\""
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:ui\"",
+    "build": "cd sentira-wellness-ui-main && npm install && npm run build"
   },
   "dependencies": {
     "concurrently": "^8.2.2"
