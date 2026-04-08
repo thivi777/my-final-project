@@ -140,21 +140,9 @@ const activities = [
 ];
 
 const quickActions = [
-  { icon: Wind, label: "Quick Breathe", color: "bg-soft-green/20 text-soft-green" },
-  { 
-    icon: Music, 
-    label: "Calm Sounds", 
-    color: "bg-soft-blue/20 text-soft-blue",
-    category: "meditation", // Treat as a meditation for player purposes
-    audioUrl: "https://actions.google.com/sounds/v1/ambient/soft_wind_with_chimes.ogg"
-  },
-  { icon: Flower2, label: "Mindful Pause", color: "bg-primary/15 text-primary" },
-  { 
-    icon: Moon, 
-    label: "Sleep Prep", 
-    color: "bg-sand text-sand-foreground",
-    title: "Sleep Prep" 
-  },
+  { icon: Brain, label: "Meditation", color: "bg-purple-100 text-purple-600", category: "meditation" },
+  { icon: BookOpen, label: "Journaling", color: "bg-amber-100 text-amber-600", category: "journaling" },
+  { icon: Wind, label: "Breathing", color: "bg-teal-100 text-teal-600", category: "breathing" },
 ];
 
 export default function ActivitiesPage() {
@@ -296,16 +284,21 @@ export default function ActivitiesPage() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="grid grid-cols-2 md:grid-cols-4 gap-3"
+        className="grid grid-cols-1 md:grid-cols-3 gap-6"
       >
-        {quickActions.map((qa) => (
+        {quickActions.map((action) => (
           <button
-            key={qa.label}
-            onClick={() => setActiveActivity(qa)}
-            className={`flex items-center gap-3 p-4 rounded-2xl transition-all hover:scale-[1.02] cursor-pointer ${qa.color}`}
+            key={action.label}
+            onClick={() => setTab(action.category)}
+            className="flex items-center gap-4 p-6 bg-white border rounded-3xl hover:shadow-md transition-all hover:scale-[1.02] group text-left"
           >
-            <qa.icon size={22} />
-            <span className="font-body text-sm font-medium">{qa.label}</span>
+            <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110", action.color)}>
+              <action.icon size={28} />
+            </div>
+            <div>
+              <h3 className="font-display font-bold text-slate-800 text-lg">{action.label}</h3>
+              <p className="text-slate-500 text-sm font-body">Browse {action.category} guides</p>
+            </div>
           </button>
         ))}
       </motion.div>
