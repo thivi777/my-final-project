@@ -1,8 +1,9 @@
 {
-  "/api/users/profile/route": "app/api/users/profile/route.js",
   "/login/page": "app/login/page.js",
   "/auth/callback/page": "app/auth/callback/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
+  "/page": "app/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/dashboard/activities/page": "app/dashboard/activities/page.js",
-  "/dashboard/insights/page": "app/dashboard/insights/page.js"
+  "/dashboard/insights/page": "app/dashboard/insights/page.js",
+  "/dashboard/page": "app/dashboard/page.js"
 }

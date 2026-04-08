@@ -26,6 +26,15 @@ export default function MeditationPlayer({ onClose, title, label = "Guided Medit
 
   useEffect(() => {
     if (audioRef.current) {
+      audioRef.current.load(); // Force reload when source changes
+      if (isPlaying) {
+        audioRef.current.play().catch(e => console.error("Audio playback failed:", e));
+      }
+    }
+  }, [source]);
+
+  useEffect(() => {
+    if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.play().catch(e => console.error("Audio playback failed:", e));
       } else {

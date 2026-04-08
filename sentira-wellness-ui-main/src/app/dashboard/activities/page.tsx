@@ -55,7 +55,7 @@ const activities = [
     description: "Slowly scan through your body, releasing tension from head to toe.",
     image: "/images/activity-meditation.jpg",
     premium: true,
-    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-soft-ambient-166.mp3"
+    audioUrl: "https://actions.google.com/sounds/v1/water/waves_crashing_on_rock_beach.ogg"
   },
   {
     icon: Brain,
@@ -64,7 +64,7 @@ const activities = [
     category: "meditation",
     description: "Send warmth and compassion to yourself and others through guided meditation.",
     image: "/images/meditation .jpg",
-    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3"
+    audioUrl: "https://actions.google.com/sounds/v1/ambient/morning_forest.ogg"
   },
   {
     icon: Moon,
@@ -74,7 +74,7 @@ const activities = [
     description: "Watch calming visuals accompanied by soothing music to find center.",
     image: "/images/sleep2.jpg",
     videoUrl: "https://assets.mixkit.co/videos/preview/mixkit-tree-branches-in-the-breeze-1188-large.mp4",
-    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3"
+    audioUrl: "https://actions.google.com/sounds/v1/weather/rain_on_roof.ogg"
   },
   {
     icon: BookOpen,
@@ -100,7 +100,7 @@ const activities = [
     description: "Multi-phase journey: Controlled breathing followed by deep-sleep audio.",
     image: "/images/sleep.jpg",
     premium: true,
-    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-night-forest-651.mp3"
+    audioUrl: "https://actions.google.com/sounds/v1/weather/light_rain_on_leaves.ogg"
   },
   {
     icon: Music,
@@ -110,7 +110,8 @@ const activities = [
     label: "Relaxation Music",
     description: "Soothe your mind with calming ambient sounds designed for deep relaxation.",
     image: "/images/hero-1.jpg",
-    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-delicate-piano-49.mp3"
+    premium: true,
+    audioUrl: "https://actions.google.com/sounds/v1/ambient/ocean_waves.ogg"
   },
   {
     icon: Flower2,
@@ -120,7 +121,8 @@ const activities = [
     label: "Loving Music",
     description: "Connect with feelings of love and compassion through gentle melodic tones.",
     image: "/images/df62de4b52fcdde3bb5a8bc4c3b674df.jpg",
-    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-sun-and-ocean-585.mp3"
+    premium: true,
+    audioUrl: "https://actions.google.com/sounds/v1/hum/light_fan_white_noise.ogg"
   },
   {
     icon: Brain,
@@ -130,7 +132,8 @@ const activities = [
     label: "Guided Meditation",
     description: "A structured musical journey to help you maintain focus during your meditation.",
     image: "/images/9fff570c833e6e328ef6eb6719fdc2b9.jpg",
-    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-meditation-vibe-149.mp3"
+    premium: true,
+    audioUrl: "https://actions.google.com/sounds/v1/water/lake_waves_lapping_shore.ogg"
   },
 ];
 
@@ -141,7 +144,7 @@ const quickActions = [
     label: "Calm Sounds", 
     color: "bg-soft-blue/20 text-soft-blue",
     category: "meditation", // Treat as a meditation for player purposes
-    audioUrl: "https://assets.mixkit.co/music/preview/mixkit-serene-view-443.mp3"
+    audioUrl: "https://actions.google.com/sounds/v1/ambient/soft_wind_with_chimes.ogg"
   },
   { icon: Flower2, label: "Mindful Pause", color: "bg-primary/15 text-primary" },
   { 
@@ -205,6 +208,7 @@ export default function ActivitiesPage() {
         )}
         {activeActivity?.category === "meditation" && (
           <MeditationPlayer 
+            key={activeActivity.title || activeActivity.label}
             onClose={() => {
               handleMeditationComplete(activeActivity.title || activeActivity.label);
               setActiveActivity(null);
