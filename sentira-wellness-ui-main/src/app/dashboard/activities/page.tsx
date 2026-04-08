@@ -14,7 +14,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion, AnimatePresence } from "framer-motion";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { toast } from "sonner";
 
 import BreathingExercise from "@/components/dashboard/BreathingExercise";
 import CBTJournal from "@/components/dashboard/CBTJournal";
@@ -160,22 +161,46 @@ export default function ActivitiesPage() {
   const [activeActivity, setActiveActivity] = useState<any>(null);
   const [isPremium, setIsPremium] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const paymentSuccess = searchParams.get("payment_success");
+
+  const fetchProfile = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
+      const { data } = await axios.get(`${apiUrl}/api/users/profile`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setIsPremium(data.data.isPremium);
+      return data.data.isPremium;
+    } catch (err) {
+      console.error("Failed to fetch premium status:", err);
+      return false;
+    }
+  };
 
   useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
-        const { data } = await axios.get(`${apiUrl}/api/users/profile`, {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        setIsPremium(data.data.isPremium);
-      } catch (err) {
-        console.error("Failed to fetch premium status:", err);
-      }
-    };
     fetchProfile();
-  }, []);
+
+    if (paymentSuccess === "true") {
+      toast.success("Welcome to Sentira Plus! Your premium features are unlocking...", {
+        duration: 5000,
+        icon: "✨"
+      });
+      
+      // Re-fetch every 2 seconds for 10 seconds to catch the webhook update
+      let attempts = 0;
+      const interval = setInterval(async () => {
+        const premium = await fetchProfile();
+        attempts++;
+        if (premium || attempts > 5) {
+          clearInterval(interval);
+        }
+      }, 2000);
+      
+      return () => clearInterval(interval);
+    }
+  }, [paymentSuccess]);
 
   const filtered = tab === "all" ? activities : activities.filter((a) => a.category === tab);
 

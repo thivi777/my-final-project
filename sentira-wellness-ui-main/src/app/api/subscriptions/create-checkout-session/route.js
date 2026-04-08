@@ -40,7 +40,7 @@ export async function POST(request) {
       payment_method_types: ['card'],
       line_items: [{ price: effectivePriceId, quantity: 1 }],
       mode: 'subscription',
-      success_url: `${process.env.FRONTEND_URL}/dashboard/profile?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${process.env.FRONTEND_URL}/dashboard/activities?payment_success=true`,
       cancel_url: `${process.env.FRONTEND_URL}/dashboard/premium`,
       client_reference_id: String(auth.user._id),
       customer_email: auth.user.email,

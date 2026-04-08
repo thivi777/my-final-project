@@ -1,7 +1,8 @@
 {
-  "/login/page": "app/login/page.js",
+  "/api/users/profile/route": "app/api/users/profile/route.js",
   "/auth/callback/page": "app/auth/callback/page.js",
   "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/activities/page": "app/dashboard/activities/page.js",
   "/dashboard/premium/page": "app/dashboard/premium/page.js",
-  "/dashboard/activities/page": "app/dashboard/activities/page.js"
+  "/dashboard/profile/page": "app/dashboard/profile/page.js"
 }
