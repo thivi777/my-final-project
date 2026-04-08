@@ -1,5 +1,19 @@
 {
-  "buildCommand": "cd sentira-wellness-ui-main && npm install && npm run build",
-  "outputDirectory": "sentira-wellness-ui-main/.next",
-  "framework": "nextjs"
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/sentira-wellness-ui-main/$1"
+    }
+  ],
+  "functions": {
+    "api/index.js": {
+      "runtime": "vercel-node@latest",
+      "includeFiles": "emotional-wellness-backend/**"
+    }
+  }
 }

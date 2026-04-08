@@ -2,11 +2,15 @@
   "name": "sentira-wellness",
   "version": "1.0.0",
   "description": "Sentira Wellness Full Stack Application",
+  "workspaces": [
+    "sentira-wellness-ui-main",
+    "emotional-wellness-backend"
+  ],
   "scripts": {
-    "dev:ui": "cd sentira-wellness-ui-main && npm run dev",
-    "dev:api": "cd emotional-wellness-backend && npm run dev",
+    "dev:ui": "npm run dev -w sentira-wellness-ui-main",
+    "dev:api": "npm run dev -w emotional-wellness-backend",
     "dev": "concurrently \"npm run dev:api\" \"npm run dev:ui\"",
-    "build": "cd sentira-wellness-ui-main && npm install && npm run build"
+    "build": "npm run build -w sentira-wellness-ui-main"
   },
   "dependencies": {
     "concurrently": "^8.2.2"
