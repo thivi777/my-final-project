@@ -29,7 +29,7 @@ export default function GoalsPage() {
   const fetchGoals = async () => {
     try {
       const token = localStorage.getItem("token");
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
       const res = await axios.get(`${apiUrl}/api/goals`, {
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -49,7 +49,7 @@ export default function GoalsPage() {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
       await axios.post(`${apiUrl}/api/goals`, newGoal, {
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -70,7 +70,7 @@ export default function GoalsPage() {
     try {
       const token = localStorage.getItem("token");
       const newStatus = currentStatus === "Completed" ? "Pending" : "Completed";
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
       await axios.put(`${apiUrl}/api/goals/${id}`, { status: newStatus }, {
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -83,7 +83,7 @@ export default function GoalsPage() {
   const deleteGoal = async (id: string) => {
     try {
       const token = localStorage.getItem("token");
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
       await axios.delete(`${apiUrl}/api/goals/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });

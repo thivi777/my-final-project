@@ -46,7 +46,7 @@ export default function MoodLogger({ onLogSaved }: MoodLoggerProps) {
     try {
       const token = localStorage.getItem("token");
       const moodData = MOOD_OPTIONS[selectedMood];
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
 
       await axios.post(
         `${apiUrl}/api/mood-logs`,

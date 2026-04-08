@@ -48,7 +48,7 @@ export default function DashboardPage() {
     setSelectedMood(label);
     try {
       const token = localStorage.getItem("token");
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
       await axios.post(
         `${apiUrl}/api/mood-logs`,
         { moodScore: score, moodEmoji: label === "Happy" ? "😄" : label === "Okay" ? "😐" : "😢", tags: [label.toLowerCase()] },

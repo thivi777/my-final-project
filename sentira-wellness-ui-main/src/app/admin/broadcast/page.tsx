@@ -29,7 +29,7 @@ export default function BroadcastPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   
   const { toast } = useToast();
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
 
   const fetchAffirmations = async () => {
     try {

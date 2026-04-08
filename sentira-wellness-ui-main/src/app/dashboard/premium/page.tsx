@@ -14,7 +14,7 @@ export default function PremiumPage() {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
       const { data } = await axios.post(
         `${apiUrl}/api/subscriptions/create-checkout-session`,
         {},

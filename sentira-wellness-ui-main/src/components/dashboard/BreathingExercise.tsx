@@ -47,7 +47,7 @@ export default function BreathingExercise({
       const saveActivity = async () => {
         try {
           const token = localStorage.getItem("token");
-          const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+          const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
           await axios.post(`${apiUrl}/api/activities`, {
             type: "Deep Breathing",
             duration: 5,

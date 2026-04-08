@@ -26,7 +26,7 @@ export default function CBTJournal({ onClose }: CBTJournalProps) {
       content: "Hello. I am Sentira. I'm here to listen without judgment. How are you feeling right now, and what's on your mind?"
     }
   ]);
-  const [journalMode, setJournalMode] = useState<"chat" | "diary">("chat");
+  const [journalMode, setJournalMode] = useState<"diary">("diary");
   const [diaryContent, setDiaryContent] = useState("");
   const [reflection, setReflection] = useState<string | null>(null);
   const [inputValue, setInputValue] = useState("");
@@ -45,29 +45,22 @@ export default function CBTJournal({ onClose }: CBTJournalProps) {
     
     try {
       const token = localStorage.getItem("token");
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
 
-      let finalContent = "";
-      if (journalMode === "chat") {
-        finalContent = messages
-          .map(m => `${m.role === 'user' ? 'User' : 'Sentira'}: ${m.content}`)
-          .join("\n\n");
-      } else {
-        finalContent = diaryContent;
-      }
+      let finalContent = diaryContent;
 
       await axios.post(`${apiUrl}/api/journals`, {
-        title: journalMode === "chat" ? `Session with Sentira - ${new Date().toLocaleDateString()}` : `Diary Entry - ${new Date().toLocaleDateString()}`,
+        title: `Diary Entry - ${new Date().toLocaleDateString()}`,
         content: finalContent,
         mood: "Calm",
         aiReflection: reflection || undefined
       }, { headers: { Authorization: `Bearer ${token}` } });
 
       await axios.post(`${apiUrl}/api/activities`, {
-        type: journalMode === "chat" ? "AI Journaling" : "Diary Entry",
+        type: "Diary Entry",
         duration: 5,
         status: "Completed",
-        notes: journalMode === "chat" ? `Completed Guided session with Sentira.` : `Completed private diary entry.`
+        notes: `Completed private diary entry.`
       }, { headers: { Authorization: `Bearer ${token}` } });
     } catch (err) {
       console.error("Failed to save session:", err);
@@ -81,7 +74,7 @@ export default function CBTJournal({ onClose }: CBTJournalProps) {
 
     try {
       const token = localStorage.getItem("token");
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
       
       const res = await axios.post(`${apiUrl}/api/ai/journal-reflection`, {
         content: diaryContent
@@ -109,7 +102,7 @@ export default function CBTJournal({ onClose }: CBTJournalProps) {
 
     try {
       const token = localStorage.getItem("token");
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
       
       const res = await axios.post(`${apiUrl}/api/ai/journal-chat`, {
         message: userMessage,
@@ -149,29 +142,8 @@ export default function CBTJournal({ onClose }: CBTJournalProps) {
             <Sparkles className="text-white w-6 h-6" />
           </div>
           <div className="flex-1">
-            <h2 className="text-xl font-bold text-white tracking-tight">Sentira Companion</h2>
-            <div className="flex items-center gap-4 mt-1">
-              <button 
-                onClick={() => !isFinished && setJournalMode("chat")}
-                className={cn(
-                  "flex items-center gap-1.5 text-xs font-bold transition-all px-2 py-1 rounded-md",
-                  journalMode === "chat" ? "text-teal-400 bg-teal-400/10" : "text-white/40 hover:text-white/60"
-                )}
-              >
-                <MessageCircle size={12} />
-                Interactive Chat
-              </button>
-              <button 
-                onClick={() => !isFinished && setJournalMode("diary")}
-                className={cn(
-                  "flex items-center gap-1.5 text-xs font-bold transition-all px-2 py-1 rounded-md",
-                  journalMode === "diary" ? "text-purple-400 bg-purple-400/10" : "text-white/40 hover:text-white/60"
-                )}
-              >
-                <BookOpen size={12} />
-                Private Diary
-              </button>
-            </div>
+            <h2 className="text-xl font-bold text-white tracking-tight">Private Diary</h2>
+            <p className="text-sm text-white/50 mt-1">Write your thoughts freely. Sentira will reflect when you finish.</p>
           </div>
           {!isFinished && (
             <Button 
@@ -190,60 +162,7 @@ export default function CBTJournal({ onClose }: CBTJournalProps) {
           className="flex-1 overflow-y-auto p-6 space-y-6 scroll-smooth custom-scrollbar"
         >
           <AnimatePresence mode="wait">
-            {journalMode === "chat" ? (
-              <motion.div
-                key="chat-mode"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 20 }}
-                className="space-y-6"
-              >
-                {messages.map((m, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    layout
-                    className={cn(
-                      "flex gap-3 max-w-[85%]",
-                      m.role === "user" ? "ml-auto flex-row-reverse" : "mr-auto"
-                    )}
-                  >
-                    <div className={cn(
-                      "w-8 h-8 rounded-full flex items-center justify-center shrink-0 shadow-sm",
-                      m.role === "assistant" ? "bg-purple-600 text-white" : "bg-teal-600 text-white"
-                    )}>
-                      {m.role === "assistant" ? <Bot size={14} /> : <User size={14} />}
-                    </div>
-                    <div className={cn(
-                      "p-4 rounded-2xl text-sm sm:text-base leading-relaxed",
-                      m.role === "assistant" 
-                        ? "bg-white/10 text-slate-100 rounded-tl-none border border-white/5" 
-                        : "bg-purple-600 text-white rounded-tr-none shadow-lg shadow-purple-900/20"
-                    )}>
-                      {m.content}
-                    </div>
-                  </motion.div>
-                ))}
 
-                {isLoading && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="flex gap-3 mr-auto"
-                  >
-                    <div className="w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center overflow-hidden">
-                      <Bot size={14} />
-                    </div>
-                    <div className="bg-white/10 p-4 rounded-2xl rounded-tl-none flex gap-1.5 items-center">
-                      <div className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce [animation-delay:-0.3s]" />
-                      <div className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce [animation-delay:-0.15s]" />
-                      <div className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" />
-                    </div>
-                  </motion.div>
-                )}
-              </motion.div>
-            ) : (
               <motion.div
                 key="diary-mode"
                 initial={{ opacity: 0, x: 20 }}
@@ -313,7 +232,6 @@ export default function CBTJournal({ onClose }: CBTJournalProps) {
                   </motion.div>
                 )}
               </motion.div>
-            )}
           </AnimatePresence>
 
           {isFinished && (
@@ -336,38 +254,7 @@ export default function CBTJournal({ onClose }: CBTJournalProps) {
           )}
         </div>
 
-        {/* Input Area */}
-        {!isFinished && journalMode === "chat" && (
-          <div className="p-6 border-t border-white/10 bg-slate-900/80 backdrop-blur-md">
-            <div className="relative group">
-              <Input
-                autoFocus
-                placeholder="Type your reflection..."
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                className="bg-white/5 border-white/10 text-white h-14 pl-6 pr-16 rounded-2xl focus:border-purple-500 focus:ring-purple-500/20 transition-all text-base"
-              />
-              <button
-                onClick={handleSend}
-                disabled={!inputValue.trim() || isLoading}
-                className={cn(
-                  "absolute right-2 top-2 w-10 h-10 rounded-xl flex items-center justify-center transition-all",
-                  inputValue.trim() && !isLoading
-                    ? "bg-purple-600 text-white shadow-lg shadow-purple-500/20 hover:scale-105"
-                    : "bg-white/5 text-white/20"
-                )}
-              >
-                <Send size={18} />
-              </button>
-            </div>
-            <p className="text-[10px] text-slate-500 text-center mt-3 font-medium uppercase tracking-widest">
-              AI-Guided Therapy Session • Powered by Sentira AI
-            </p>
-          </div>
-        )}
-
-        {!isFinished && journalMode === "diary" && !reflection && (
+        {!isFinished && !reflection && (
           <div className="p-4 border-t border-white/10 bg-slate-900/80 text-center">
              <p className="text-[10px] text-slate-500 font-medium uppercase tracking-widest">
               Private Diary Mode • Write as much as you need

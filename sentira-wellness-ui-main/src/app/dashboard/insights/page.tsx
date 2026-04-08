@@ -53,7 +53,7 @@ export default function InsightsPage() {
         if (!token) return;
 
         const headers = { Authorization: `Bearer ${token}` };
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
 
         // Fetch parallel data from MERN backend
         const [analyticsRes, logsRes] = await Promise.all([

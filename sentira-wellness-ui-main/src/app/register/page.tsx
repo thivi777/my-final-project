@@ -21,7 +21,7 @@ export default function RegisterPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
       const res = await axios.post(`${apiUrl}/api/auth/register`, { name, email, password });
       if (res.data.success) {
         localStorage.setItem("token",    res.data.data.token);
@@ -118,7 +118,7 @@ export default function RegisterPage() {
       {/* Socials */}
       <div className={s.divider}><span>Or continue with</span></div>
       <div className={s.socialCircleRow}>
-        <a href={`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/auth/google`}>
+        <a href={`${process.env.NEXT_PUBLIC_API_URL || ""}/api/auth/google`}>
           <button type="button" className={s.socialCircleBtn} aria-label="Google Login">
             <svg viewBox="0 0 24 24">
               <path fill="#EA4335" d="M5.266 9.765A7.077 7.077 0 0112 4.909c1.69 0 3.218.6 4.418 1.582L19.91 3C17.782 1.145 15.055 0 12 0 7.27 0 3.198 2.698 1.24 6.65l4.026 3.115z"/>
@@ -128,7 +128,7 @@ export default function RegisterPage() {
             </svg>
           </button>
         </a>
-        <a href={`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/auth/apple`}>
+        <a href={`${process.env.NEXT_PUBLIC_API_URL || ""}/api/auth/apple`}>
           <button type="button" className={s.socialCircleBtn} aria-label="Apple Login">
             <svg viewBox="0 0 24 24" fill="#fff">
               <path d="M16.2 9.5c-.1-2.5 2-3.7 2.1-3.8-1.2-1.7-3-1.9-3.7-1.9-1.5-.2-3 1-3.8 1-1 0-2.2-1-3.4-1-1.6.1-3.2 1-4.1 2.5-1.8 3.2-.5 7.9 1.2 10.4.8 1.2 1.8 2.5 3.1 2.5 1.2 0 1.7-.8 3.1-.8s1.8.8 3.1.8c1.3 0 2.2-1.3 3-2.5.9-1.4 1.3-2.7 1.3-2.8-.1-.1-2.2-.8-2.2-3.4zM12.9 5.5c.7-.8 1.1-1.9 1-3-.9.1-2.1.6-2.8 1.4-.6.7-1 1.8-1 2.9 1 0 2.1-.6 2.8-1.3z" />

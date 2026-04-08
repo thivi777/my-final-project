@@ -162,7 +162,7 @@ export default function ActivitiesPage() {
     const fetchProfile = async () => {
       try {
         const token = localStorage.getItem("token");
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
         const { data } = await axios.get(`${apiUrl}/api/users/profile`, {
           headers: { Authorization: `Bearer ${token}` }
         });
@@ -179,7 +179,7 @@ export default function ActivitiesPage() {
   const handleMeditationComplete = async (title: string) => {
     try {
       const token = localStorage.getItem("token");
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
       await axios.post(`${apiUrl}/api/activities`, {
         type: "Meditation",
         duration: 8,

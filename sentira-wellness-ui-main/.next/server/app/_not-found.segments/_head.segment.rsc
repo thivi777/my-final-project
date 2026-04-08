@@ -1,5 +1,0 @@
-1:"$Sreact.fragment"
-2:I[97367,["/_next/static/chunks/dfe56a12d810700e.js","/_next/static/chunks/202b956bc838ef27.js","/_next/static/chunks/fdf45ff935f7c480.js","/_next/static/chunks/e7b75cdc3bf4cd93.js"],"ViewportBoundary"]
-3:I[97367,["/_next/static/chunks/dfe56a12d810700e.js","/_next/static/chunks/202b956bc838ef27.js","/_next/static/chunks/fdf45ff935f7c480.js","/_next/static/chunks/e7b75cdc3bf4cd93.js"],"MetadataBoundary"]
-4:"$Sreact.suspense"
-0:{"buildId":"tinuV9QLqfxUABNmJ62-F","rsc":["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$L2",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L3",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Sentira Wellness"}],["$","meta","1",{"name":"description","content":"Your path to emotional wellness"}]]}]}]}],null]}],"loading":null,"isPartial":false}

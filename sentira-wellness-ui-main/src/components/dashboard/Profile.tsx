@@ -24,7 +24,7 @@ const Profile = () => {
   const fetchProfile = async () => {
     try {
       const token = localStorage.getItem("token");
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
       const r = await axios.get(`${apiUrl}/api/users/profile`, {
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -46,7 +46,7 @@ const Profile = () => {
     setIsUpdating(true);
     try {
       const token = localStorage.getItem("token");
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
       await axios.put(`${apiUrl}/api/users/profile`, formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -70,7 +70,7 @@ const Profile = () => {
       const base64String = reader.result as string;
       try {
         const token = localStorage.getItem("token");
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
         // Optimistically update UI
         setUser((prev: any) => ({ ...prev, avatar: base64String }));
         

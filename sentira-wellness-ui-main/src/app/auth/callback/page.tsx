@@ -24,7 +24,7 @@ function CallbackInner() {
 
         try {
           // Fetch user profile to check roles
-          const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+          const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
           const { data } = await axios.get(`${apiUrl}/api/users/profile`, {
             headers: { Authorization: `Bearer ${token}` }
           });

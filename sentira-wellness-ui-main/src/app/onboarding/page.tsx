@@ -327,7 +327,7 @@ export default function OnboardingPage() {
         answer: String(val)
       }));
 
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
       await axios.post(
         `${apiUrl}/api/responses`,
         {
@@ -360,7 +360,7 @@ export default function OnboardingPage() {
         setIsSubmitting(true);
         setError(null);
         const token = localStorage.getItem("token");
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
         await axios.post(
           `${apiUrl}/api/auth/verify-email`,
           { code: answers["email_verify"] },
@@ -536,7 +536,7 @@ export default function OnboardingPage() {
                                 setIsSubmitting(true);
                                 setError(null);
                                 const token = localStorage.getItem("token");
-                                const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+                                const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
                                 await axios.post(
                                   `${apiUrl}/api/auth/resend-verification`,
                                   {},

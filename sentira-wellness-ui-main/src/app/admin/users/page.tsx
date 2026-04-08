@@ -37,7 +37,7 @@ export default function UserManagementPage() {
         setLoading(false);
         return;
       }
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
       const res = await axios.get(`${apiUrl}/api/users`, {
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -66,7 +66,7 @@ export default function UserManagementPage() {
     
     try {
       const token = localStorage.getItem("adminToken");
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
       await axios.delete(`${apiUrl}/api/users/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });

@@ -35,7 +35,7 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
       try {
         const token = localStorage.getItem("token");
         if (token) {
-          const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+          const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
           const { data } = await axios.get(`${apiUrl}/api/users/profile`, {
             headers: { Authorization: `Bearer ${token}` }
           });

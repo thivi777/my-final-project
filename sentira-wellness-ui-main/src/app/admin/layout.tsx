@@ -47,7 +47,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   return (
     <div className="min-h-screen flex bg-[#020617] text-slate-200">
       {/* Admin Sidebar */}
-      <aside className="w-72 bg-[#020617] border-r border-[#1e293b]/50 flex flex-col shadow-2xl relative z-20">
+      <aside className="w-72 bg-[#020617] border-r border-[#1e293b]/50 flex flex-col shadow-2xl relative z-20 h-screen sticky top-0">
         <div className="p-8 border-b border-[#1e293b]/50">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-600/20">

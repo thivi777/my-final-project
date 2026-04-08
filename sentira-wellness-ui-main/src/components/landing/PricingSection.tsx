@@ -31,7 +31,7 @@ const PricingSection = () => {
 
     setLoading(true);
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
       const { data } = await axios.post(
         `${apiUrl}/api/subscriptions/create-checkout-session`,
         { priceId: PRICE_IDS[currency] },
