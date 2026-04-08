@@ -21,6 +21,7 @@ import BreathingExercise from "@/components/dashboard/BreathingExercise";
 import CBTJournal from "@/components/dashboard/CBTJournal";
 import MeditationPlayer from "@/components/dashboard/MeditationPlayer";
 import SleepPrep from "@/components/dashboard/SleepPrep";
+import PremiumModal from "@/components/dashboard/PremiumModal";
 
 import axios from "axios";
 
@@ -160,6 +161,7 @@ export default function ActivitiesPage() {
   const [tab, setTab] = useState("all");
   const [activeActivity, setActiveActivity] = useState<any>(null);
   const [isPremium, setIsPremium] = useState(false);
+  const [showPremiumModal, setShowPremiumModal] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
   const paymentSuccess = searchParams.get("payment_success");
@@ -250,6 +252,9 @@ export default function ActivitiesPage() {
         {activeActivity?.label === "Quick Breathe" && (
           <BreathingExercise onClose={() => setActiveActivity(null)} type="4-7-8" />
         )}
+        {showPremiumModal && (
+          <PremiumModal onClose={() => setShowPremiumModal(false)} />
+        )}
       </AnimatePresence>
 
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
@@ -329,7 +334,7 @@ export default function ActivitiesPage() {
                       className="w-full rounded-full font-body text-sm gap-2"
                       onClick={() => {
                         if (a.premium && !isPremium) {
-                          router.push("/dashboard/premium");
+                          setShowPremiumModal(true);
                         } else {
                           setActiveActivity(a);
                         }
