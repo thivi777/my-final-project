@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "@/styles/abstracts/variables" as v;
 @use "@/styles/abstracts/mixins" as m;
 
@@ -164,7 +165,7 @@
     &:hover:not(:disabled) {
       transform: translateY(-2px);
       box-shadow: v.$shadow-brand;
-      background: darken(#006D77, 5%);
+      background: color.adjust(#006D77, $lightness: -5%);
     }
 
     &:disabled {
