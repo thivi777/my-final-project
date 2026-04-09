@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Image from "next/image";
 import { 
   Wind, 
@@ -145,7 +145,7 @@ const quickActions = [
   { icon: Wind, label: "Breathing", color: "bg-teal-100 text-teal-600", category: "breathing" },
 ];
 
-export default function ActivitiesPage() {
+function ActivitiesContent() {
   const [tab, setTab] = useState("all");
   const [activeActivity, setActiveActivity] = useState<any>(null);
   const [isPremium, setIsPremium] = useState(false);
@@ -369,5 +369,17 @@ export default function ActivitiesPage() {
         </TabsContent>
       </Tabs>
     </div>
+  );
+}
+
+export default function ActivitiesPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    }>
+      <ActivitiesContent />
+    </Suspense>
   );
 }
